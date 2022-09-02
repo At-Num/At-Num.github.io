@@ -3,6 +3,7 @@ baseURL: https://atnum.uk/
 languageCode: en-us 
 title: Atnum 
 theme: PaperMod 
+publishDir: docs
 author: 
   email: "info@atnum.uk" 
   name: "Atnum" 
