@@ -1,8 +1,8 @@
 ---
-title: "Ubuntu on oci"
+title: "Ubuntu on OCI"
 date: 2022-08-09T18:08:51+03:00
 description: Oracle Cloud Infrastructure Ubuntu Image Iptables
-summary:  Ubuntu image on oci with  a secure firewall
+summary:  Ubuntu image on OCI with a secure firewall
 draft: false
 ---
 - default settings 

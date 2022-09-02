@@ -1,8 +1,8 @@
 ---
-title: "Ubuntu Wireguard Oci"
+title: "Ubuntu Wireguard OCI"
 date: 2022-08-16T00:34:28+03:00
 description: Oracle Cloud Infrastructure Ubuntu Wireguard
-summary:  Ubuntu image on oci with Wireguard
+summary:  Ubuntu image on OCI with Wireguard
 draft: false
 ---
 - wireguard concepts 
