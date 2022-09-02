@@ -1,3 +1,4 @@
 info.txt
 public
 *.lock
+/info.txt

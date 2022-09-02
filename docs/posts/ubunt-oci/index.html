@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Ubuntu on oci | Atnum</title>
+<meta name="keywords" content="">
+<meta name="description" content="Oracle Cloud Infrastructure Ubuntu Image Iptables">
+<meta name="author" content="">
+<link rel="canonical" href="https://atnum.uk/posts/ubunt-oci/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9ec540e21fc29f82d92dfe2d59b0b7ab9375aed0c4f5be8f798043ff08de3f61.css" integrity="sha256-nsVA4h/Cn4LZLf4tWbC3q5N1rtDE9b6PeYBD/wjeP2E=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://atnum.uk/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://atnum.uk/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://atnum.uk/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://atnum.uk/apple-touch-icon.png">
+<link rel="mask-icon" href="https://atnum.uk/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Ubuntu on oci" />
+<meta property="og:description" content="Oracle Cloud Infrastructure Ubuntu Image Iptables" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://atnum.uk/posts/ubunt-oci/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-09T18:08:51&#43;03:00" />
+<meta property="article:modified_time" content="2022-08-09T18:08:51&#43;03:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Ubuntu on oci"/>
+<meta name="twitter:description" content="Oracle Cloud Infrastructure Ubuntu Image Iptables"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://atnum.uk/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Ubuntu on oci",
+      "item": "https://atnum.uk/posts/ubunt-oci/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Ubuntu on oci",
+  "name": "Ubuntu on oci",
+  "description": "Oracle Cloud Infrastructure Ubuntu Image Iptables",
+  "keywords": [
+    
+  ],
+  "articleBody": " default settings issues update for TLS security Default settings The Oracle Cloud Infrastructure (oci) defaults with the iptable\nChain INPUT target prot opt in out source destination ACCEPT all -- * * 0.0.0.0/0 0.0.0.0/0 state RELATED,ESTABLISHED ACCEPT icmp -- * * 0.0.0.0/0 0.0.0.0/0 ACCEPT all -- lo * 0.0.0.0/0 0.0.0.0/0 ACCEPT udp -- * * 0.0.0.0/0 0.0.0.0/0 udp spt:123 ACCEPT tcp -- * * 0.0.0.0/0 0.0.0.0/0 state NEW tcp dpt:22 REJECT all -- * * 0.0.0.0/0 0.0.0.0/0 reject-with icmp-host-prohibited Chain FORWARD target prot opt in out source destination REJECT all -- * * 0.0.0.0/0 0.0.0.0/0 reject-with icmp-host-prohibited Chain OUTPUT target prot opt in out source destination InstanceServices all -- * * 0.0.0.0/0 169.254.0.0/16 Chain InstanceServices (1 references) target prot opt in out source destination ACCEPT tcp -- * * 0.0.0.0/0 169.254.0.2 owner UID match 0 tcp dpt:3260 ACCEPT tcp -- * * 0.0.0.0/0 169.254.2.0/24 owner UID match 0 tcp dpt:3260 ACCEPT tcp -- * * 0.0.0.0/0 169.254.4.0/24 owner UID match 0 tcp dpt:3260 ACCEPT tcp -- * * 0.0.0.0/0 169.254.5.0/24 owner UID match 0 tcp dpt:3260 ACCEPT tcp -- * * 0.0.0.0/0 169.254.0.2 tcp dpt:80 ACCEPT udp -- * * 0.0.0.0/0 169.254.169.254 udp dpt:53 ACCEPT tcp -- * * 0.0.0.0/0 169.254.169.254 tcp dpt:53 ACCEPT tcp -- * * 0.0.0.0/0 169.254.0.3 owner UID match 0 tcp dpt:80 ACCEPT tcp -- * * 0.0.0.0/0 169.254.0.4 tcp dpt:80 ACCEPT tcp -- * * 0.0.0.0/0 169.254.169.254 tcp dpt:80 ACCEPT udp -- * * 0.0.0.0/0 169.254.169.254 udp dpt:67 ACCEPT udp -- * * 0.0.0.0/0 169.254.169.254 udp dpt:69 ACCEPT udp -- * * 0.0.0.0/0 169.254.169.254 udp dpt:123 REJECT tcp -- * * 0.0.0.0/0 169.254.0.0/16 tcp reject-with tcp-reset REJECT udp -- * * 0.0.0.0/0 169.254.0.0/16 udp reject-with icmp-port-unreachable Issues ufw is problematic firewalld works atnum recomends manually setting INPUT rules ubuntu on oci will not work well with ufw, in fact oci have disabled it by default. Firewalld will work however it will delete the InstanceServices chain.\nThis chain is important as it allows outgoing connections to the iSCSI network endpoints (169.254.0.2:3260, 169.254.2.0/24:3260) that serve the instance’s boot and block volumes. Removing these rules is a security issue as it allows non-root users or non-administrators to access the instance’s boot disk volume.\nThe most secure solution is to manually update the iptables input chain.\nExample\nOpening up the imports for TLS\nsudo iptables -I INPUT 6 -p tcp -m tcp --dport 80 -j ACCEPT sudo iptables -I INPUT 7 -p tcp -m tcp --dport 443 -j ACCEPT Preserve security with the InstanceServices chain You may be tempted to flush iptables with\niptables -F iptables -X the above command will delete the InstanceServices rules.\nSummary By default the ubuntu image is locked down for everything other than ssh on port 22. This is a good thing, however it can cause frustration for users with out experience with iptables. Firewald is a solution but better to work with iptables to keep things simple and secure. For security its important to preserve the rules in InstanceServices chain.\n",
+  "wordCount" : "497",
+  "inLanguage": "en",
+  "datePublished": "2022-08-09T18:08:51+03:00",
+  "dateModified": "2022-08-09T18:08:51+03:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://atnum.uk/posts/ubunt-oci/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Atnum",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://atnum.uk/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://atnum.uk/" accesskey="h" title="Atnum (Alt + H)">Atnum</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://atnum.uk/about" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://atnum.uk/posts" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://atnum.uk/consult" title="Consult">
+                    <span>Consult</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://atnum.uk/contact" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Ubuntu on oci
+    </h1>
+    <div class="post-description">
+      Oracle Cloud Infrastructure Ubuntu Image Iptables
+    </div>
+    <div class="post-meta"><span title='2022-08-09 18:08:51 +0300 EEST'>August 9, 2022</span>
+
+</div>
+  </header> 
+  <div class="post-content"><ul>
+<li>default settings</li>
+<li>issues</li>
+<li>update for TLS</li>
+<li>security</li>
+</ul>
+<hr>
+<h3 id="default-settings">Default settings<a hidden class="anchor" aria-hidden="true" href="#default-settings">#</a></h3>
+<p>The Oracle Cloud Infrastructure <strong><em>(oci)</em></strong> defaults with the iptable</p>
+<pre tabindex="0"><code>Chain INPUT 
+target  prot opt in out  source      destination         
+ACCEPT  all  --  *   *   0.0.0.0/0   0.0.0.0/0     state RELATED,ESTABLISHED
+ACCEPT  icmp --  *   *   0.0.0.0/0   0.0.0.0/0           
+ACCEPT  all  --  lo  *   0.0.0.0/0   0.0.0.0/0           
+ACCEPT  udp  --  *   *   0.0.0.0/0   0.0.0.0/0     udp spt:123
+ACCEPT  tcp  --  *   *   0.0.0.0/0   0.0.0.0/0     state NEW tcp dpt:22
+REJECT  all  --  *   *   0.0.0.0/0   0.0.0.0/0     reject-with icmp-host-prohibited
+
+Chain FORWARD 
+target prot opt in  out  source      destination         
+REJECT all  --  *   *    0.0.0.0/0   0.0.0.0/0     reject-with icmp-host-prohibited
+
+Chain OUTPUT 
+target            prot opt in   out   source        destination         
+InstanceServices  all  --  *    *     0.0.0.0/0     169.254.0.0/16      
+
+Chain InstanceServices (1 references)
+target  prot opt in out  source     destination         
+ACCEPT  tcp  --  *   *   0.0.0.0/0  169.254.0.2      owner UID match 0 tcp dpt:3260 
+ACCEPT  tcp  --  *   *   0.0.0.0/0  169.254.2.0/24   owner UID match 0 tcp dpt:3260 
+ACCEPT  tcp  --  *   *   0.0.0.0/0  169.254.4.0/24   owner UID match 0 tcp dpt:3260 
+ACCEPT  tcp  --  *   *   0.0.0.0/0  169.254.5.0/24   owner UID match 0 tcp dpt:3260 
+ACCEPT  tcp  --  *   *   0.0.0.0/0  169.254.0.2      tcp dpt:80 
+ACCEPT  udp  --  *   *   0.0.0.0/0  169.254.169.254  udp dpt:53 
+ACCEPT  tcp  --  *   *   0.0.0.0/0  169.254.169.254  tcp dpt:53 
+ACCEPT  tcp  --  *   *   0.0.0.0/0  169.254.0.3      owner UID match 0 tcp dpt:80 
+ACCEPT  tcp  --  *   *   0.0.0.0/0  169.254.0.4      tcp dpt:80 
+ACCEPT  tcp  --  *   *   0.0.0.0/0  169.254.169.254  tcp dpt:80 
+ACCEPT  udp  --  *   *   0.0.0.0/0  169.254.169.254  udp dpt:67 
+ACCEPT  udp  --  *   *   0.0.0.0/0  169.254.169.254  udp dpt:69 
+ACCEPT  udp  --  *   *   0.0.0.0/0  169.254.169.254  udp dpt:123 
+REJECT  tcp  --  *   *   0.0.0.0/0  169.254.0.0/16   tcp  reject-with tcp-reset
+REJECT  udp  --  *   *   0.0.0.0/0  169.254.0.0/16   udp  reject-with icmp-port-unreachable
+</code></pre><hr>
+<h3 id="issues">Issues<a hidden class="anchor" aria-hidden="true" href="#issues">#</a></h3>
+<ul>
+<li>ufw is problematic</li>
+<li>firewalld works</li>
+<li>atnum recomends manually setting INPUT rules</li>
+</ul>
+<p>ubuntu on oci will not work well with ufw, in fact oci have disabled it by default. Firewalld will work however it will delete the <strong>InstanceServices</strong> chain.</p>
+<p>This chain is important as it allows outgoing connections to the iSCSI network endpoints (169.254.0.2:3260, 169.254.2.0/24:3260) that serve the instance&rsquo;s boot and block volumes. Removing these rules is a security issue as it allows non-root users or non-administrators to access the instance’s boot disk volume.</p>
+<p>The most secure solution is to manually update the iptables input chain.</p>
+<blockquote>
+<p>Example<br>
+Opening up the imports for TLS</p>
+</blockquote>
+<pre tabindex="0"><code>sudo iptables -I  INPUT 6  -p tcp -m tcp --dport 80 -j ACCEPT
+sudo iptables -I  INPUT 7  -p tcp -m tcp --dport 443 -j ACCEPT 
+</code></pre><hr>
+<h3 id="preserve-security-with-the-instanceservices-chain">Preserve security with the InstanceServices chain<a hidden class="anchor" aria-hidden="true" href="#preserve-security-with-the-instanceservices-chain">#</a></h3>
+<p>You may be tempted to flush iptables with</p>
+<pre tabindex="0"><code>iptables -F
+iptables -X
+</code></pre><p>the above command will delete the InstanceServices rules.</p>
+<hr>
+<h2 id="summary">Summary<a hidden class="anchor" aria-hidden="true" href="#summary">#</a></h2>
+<p>By default the ubuntu image is locked down for everything other than ssh on port 22. This is a good thing, however it can cause frustration for users with out experience with iptables. Firewald is a solution but better to work with iptables to keep things simple and secure. For security its important to preserve the rules in InstanceServices chain.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>Copyright © 2022 AtNum. All Rights Reserved.</span><p style ="width:inherit; font-size:8px;overflow-wrap: break-word;">Company No. SC659362, Registered at Hudson House, 8 Albany Street, Edinburgh, EH1 3QB </p>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
