@@ -1,0 +1,27 @@
+source ~/.bashrc && nvm use v16.15.1
+PS1=h::
+
+
+hugo new site atnum-corporation --format yaml
+hugo server
+hugo new posts/ubunt-oci.md
+hugo new posts/ubunt-wireguard-oci.md
+hugo server
+
+
+https://blogs.oracle.com/developers/post/enabling-network-traffic-to-ubuntu-images-in-oracle-cloud-infrastructure
+
+https://docs.oracle.com/en-us/iaas/Content/partner-portal/partner-portal_app-iptables-rules.htm
+
+wire guard
+https://unix.stackexchange.com/questions/653495/oracle-free-tier-wireguard-and-iptables
+
+https://www.procustodibus.com/blog/2021/01/wireguard-endpoints-and-ip-addresses/
+
+
+https://github.com/material-components/material-components-web/blob/master/packages/mdc-button/README.md
+
+
+Contents of static are mapped as-is to website’s path. Image in static/image.png will be available as it as at website.com/image.png.
+
+

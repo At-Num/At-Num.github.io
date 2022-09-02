@@ -1,3 +1,41 @@
-baseURL: http://example.org/
-languageCode: en-us
-title: My New Hugo Site
+# baseURL is context root for asset links
+baseURL: https://atnum.uk/
+languageCode: en-us 
+title: Atnum 
+theme: PaperMod 
+author: 
+  email: "info@atnum.uk" 
+  name: "Atnum" 
+  location: Hudson House, 8 Albany Street, Edinburgh, EH1 3QB
+
+menu:
+  main: 
+    - identifier: about 
+      name: About 
+      url: /about 
+      weight: 200 
+    - identifier: consult 
+      name: Consult 
+      url: /consult 
+      weight: 200 
+    - identifier: contact 
+      name: Contact 
+      url: /contact 
+      weight: 200 
+    - identifier: blog 
+      name: Blog 
+      url: /posts 
+      weight: 200 
+params: 
+  
+  footer:
+  - title: About
+    content: >
+      Atnum consulting services. Support for a broad range of services with a focus
+      on secure Oracle cloud applications.
+    recents: blog
+    recentCount: 1
+  - title: Contact Us
+    contact: true
+
+copyright: "Copyright &copy; 2022 AtNum. All Rights Reserved."

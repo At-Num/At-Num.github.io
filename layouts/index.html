@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Welcome to the website of Atnum">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+  <title>AtNum</title>
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: baseline;
+      height: 100vh;
+      background-color: #080834;
+      background-image: url(/image/fibi-bg.svg);
+      background-position: right;
+      background-repeat: repeat-y;
+      background-size: 125%;
+    }
+
+    .header {
+      width: auto;
+      color: #fbf2d8;
+      font-weight: 400;
+      letter-spacing: .25rem;
+      margin-top: 10vh;
+    }
+
+    .sub-header {
+      width: auto;
+      color: #f6f0df;
+      font-weight: 400;
+      letter-spacing: .01rem;
+      z-index: 1;
+      margin-top: 1vh;
+    }
+
+    .enterBttn {
+      width: 90%;
+      height: auto;
+      margin-top: 9vh;
+    }
+
+    .enter {
+      width: auto;
+      color: #efcb61;
+
+    }
+
+    @media only screen and (max-width : 320px) {
+      .container {
+        background-image: url(/image/fibi-bg-mb.svg);
+        background-repeat: repeat;
+      }
+
+      .header {
+        margin-top:0;
+        --mdc-typography-headline1-font-size: 72px;
+      }
+
+    }
+
+    @media screen and (max-width: 599px) {
+
+      .container {
+        background-image: url(/image/fibi-bg-mb.svg);
+        background-repeat: repeat;
+        background-color: #080834;
+      }
+
+      .header {
+        --mdc-typography-headline1-font-size: 48px;
+      }
+
+      .sub-header {
+        --mdc-typography-headline2-font-size: 26px;
+      }
+
+      .enterBttn {
+        height: fit-content;
+        width: 70%;
+      }
+
+      .enter {
+        --mdc-typography-headline3-font-size: 22px;
+
+      }
+    }
+  </style>
+</head>
+
+<body class="mdc-typography container">
+  <!-- <div class="container"> -->
+  <span class="mdc-typography--headline1 header">AtNum</span>
+  <div style="height:8%;"></div>
+  <span class="mdc-typography--headline2 sub-header" style="width:auto;color:#fbf2d8">Enterprise consulting</span>
+  <a class="mdc-button mdc-button--raised enterBttn" href="./about">
+    <div class="mdc-button__ripple"></div>
+    <span class="mdc-button__focus-ring"></span>
+    <span class="mdc-button__label mdc-typography--headline3 enter">
+      Enter
+    </span>
+  </a>
+  <!-- </div> -->
+</body>
+
+</html>
