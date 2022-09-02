@@ -6,6 +6,7 @@ hugo server
 hugo new posts/ubunt-oci.md
 hugo new posts/ubunt-wireguard-oci.md
 hugo server
+hugo new posts/oci-dynamic-groups.md
 
 https://blogs.oracle.com/developers/post/enabling-network-traffic-to-ubuntu-images-in-oracle-cloud-infrastructure
 
