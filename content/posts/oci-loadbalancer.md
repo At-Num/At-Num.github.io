@@ -37,7 +37,7 @@ Troubleshooting
 - health check on port 443
 - generally don't check peer certificate
 - only TLS v1.2 supported by OCI
-- need compatible cipher [suite](https://docs.oracle.com/en-us/iaas/Content/Balance/Tasks/managingciphersuites_topic-Predefined_Cipher_Suites.htm#predefined ciphersuites) on instances
+- need compatible cipher [suite](https://docs.oracle.com/en-us/iaas/Content/Balance/Tasks/managingciphersuites_topic-Predefined_Cipher_Suites.htm#predefined) on instances
 - default routes for http request "/" so the server block for nginx is the default server for example
 - tcpdump wont work with encrypted packets
  
