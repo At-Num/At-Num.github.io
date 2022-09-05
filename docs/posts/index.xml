@@ -2,29 +2,56 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on Atnum</title>
-    <link>https://atnum.uk/posts/</link>
+    <link>https://At-Num.github.io/posts/</link>
     <description>Recent content in Posts on Atnum</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>info@atnum.uk (Atnum)</managingEditor>
     <webMaster>info@atnum.uk (Atnum)</webMaster>
     <copyright>Copyright &amp;copy; 2022 AtNum. All Rights Reserved.</copyright>
-    <lastBuildDate>Tue, 16 Aug 2022 00:34:28 +0300</lastBuildDate><atom:link href="https://atnum.uk/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 02 Sep 2022 23:53:00 +0300</lastBuildDate><atom:link href="https://At-Num.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Ubuntu Wireguard Oci</title>
-      <link>https://atnum.uk/posts/ubunt-wireguard-oci/</link>
+      <title>OCI Load Balancer</title>
+      <link>https://At-Num.github.io/posts/oci-loadbalancer/</link>
+      <pubDate>Fri, 02 Sep 2022 23:53:00 +0300</pubDate>
+      <author>info@atnum.uk (Atnum)</author>
+      <guid>https://At-Num.github.io/posts/oci-loadbalancer/</guid>
+      <description>Oracle Cloud Infrastructure TLS</description>
+    </item>
+    
+    <item>
+      <title>OCI Certificate Authority (CA)</title>
+      <link>https://At-Num.github.io/posts/oci-cert-auth/</link>
+      <pubDate>Fri, 02 Sep 2022 23:48:30 +0300</pubDate>
+      <author>info@atnum.uk (Atnum)</author>
+      <guid>https://At-Num.github.io/posts/oci-cert-auth/</guid>
+      <description>Oracle Cloud Infrastructure TLS</description>
+    </item>
+    
+    <item>
+      <title>OCI Dynamic Groups vs AWS STS</title>
+      <link>https://At-Num.github.io/posts/oci-dynamic-groups/</link>
+      <pubDate>Fri, 02 Sep 2022 20:19:49 +0300</pubDate>
+      <author>info@atnum.uk (Atnum)</author>
+      <guid>https://At-Num.github.io/posts/oci-dynamic-groups/</guid>
+      <description>Oracle Cloud Infrastructure IAM</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu Wireguard OCI</title>
+      <link>https://At-Num.github.io/posts/ubunt-wireguard-oci/</link>
       <pubDate>Tue, 16 Aug 2022 00:34:28 +0300</pubDate>
       <author>info@atnum.uk (Atnum)</author>
-      <guid>https://atnum.uk/posts/ubunt-wireguard-oci/</guid>
+      <guid>https://At-Num.github.io/posts/ubunt-wireguard-oci/</guid>
       <description>Oracle Cloud Infrastructure Ubuntu Wireguard</description>
     </item>
     
     <item>
-      <title>Ubuntu on oci</title>
-      <link>https://atnum.uk/posts/ubunt-oci/</link>
+      <title>Ubuntu on OCI</title>
+      <link>https://At-Num.github.io/posts/ubunt-oci/</link>
       <pubDate>Tue, 09 Aug 2022 18:08:51 +0300</pubDate>
       <author>info@atnum.uk (Atnum)</author>
-      <guid>https://atnum.uk/posts/ubunt-oci/</guid>
+      <guid>https://At-Num.github.io/posts/ubunt-oci/</guid>
       <description>Oracle Cloud Infrastructure Ubuntu Image Iptables</description>
     </item>
     

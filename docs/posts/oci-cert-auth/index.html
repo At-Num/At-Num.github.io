@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>OCI Certificate Authority (CA) | Atnum</title>
+<meta name="keywords" content="">
+<meta name="description" content="Oracle Cloud Infrastructure TLS">
+<meta name="author" content="">
+<link rel="canonical" href="https://At-Num.github.io/posts/oci-cert-auth/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9ec540e21fc29f82d92dfe2d59b0b7ab9375aed0c4f5be8f798043ff08de3f61.css" integrity="sha256-nsVA4h/Cn4LZLf4tWbC3q5N1rtDE9b6PeYBD/wjeP2E=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://At-Num.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://At-Num.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://At-Num.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://At-Num.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://At-Num.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="OCI Certificate Authority (CA)" />
+<meta property="og:description" content="Oracle Cloud Infrastructure TLS" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://At-Num.github.io/posts/oci-cert-auth/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-02T23:48:30&#43;03:00" />
+<meta property="article:modified_time" content="2022-09-02T23:48:30&#43;03:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="OCI Certificate Authority (CA)"/>
+<meta name="twitter:description" content="Oracle Cloud Infrastructure TLS"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://At-Num.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "OCI Certificate Authority (CA)",
+      "item": "https://At-Num.github.io/posts/oci-cert-auth/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "OCI Certificate Authority (CA)",
+  "name": "OCI Certificate Authority (CA)",
+  "description": "Oracle Cloud Infrastructure TLS",
+  "keywords": [
+    
+  ],
+  "articleBody": "TLS everywhere The diagram below shows the set of resources within the compartment manage-tls. We have a Certificate Authority(CA) and a Vault with a RSA signing key attached to the compartment. What follows is an outline of the steps to get everything working in terms of OCI IAM to use the OCI Certificate Authority to generate certificates(certs) for the scaling solution using a public Layer 7 Load Balancer with end to end TLS as shown below. Termination of TLS At the public side of the Load Balancer(LB) we will need a cert that the browser accepts, that is a cert signed by a well known Certificate Authority(CA), that is a CA from the set of well-established CA’s that are part of the CA bundling programmes of various OS/browsers, here for example we are using Lets Encrypt(LE). Once the public IP of the LB DNS is set up with the domain everything just works. TLS is terminated and importantantly we stay at layer 7 so that the http packets are available to the LB for filtering via a WAF or routing to the backend set.\nBackend TLS To implement TLS in the backend we create an OCI CA with the Vault, we generate a signing key in the Vault and use it to generate a cert with our CA.\nThe remainder of this post outlines the IAM permissions required by compartment manage-tls for all the resources to be authorized with the required permissions. In a previous post we discussed the role of dynamic groups in this process.\nGroups and Policies When you attempt to create a CA in a compartment if your CA lacks required permissions you will get an error like\nAuthorization failed or requested resource not found: Key Id ocid1.key.oc1.......... This follows as the resource principal, the CA in this case is not authenticated, We will go a bit further to the solution for this as outlined in dynamic groups. Previously we set up the dynamic group CertificateAuthority-DG (CA_DG) with a matching rule\nresource.type='certificateauthority' once we establish this group every CA we create will be in this group. We then decide what compartments we will allow authorisation(s) then attach a policy(s) to compartments to allow authorisation(s) for the dynamic group. From the docs\nAllow dynamic-group CertificateAuthority-DG to use keys in compartment manage_tls Allow dynamic-group CertificateAuthority-DG to manage objects in compartment manage_tls now CA’s in compartment manage_tls will have access to Vault signing keys and storage objects for export. Its best practice is to use IAM users and groups and the docs[1] contain examples for this however for simplicity we are assuming you are the tenancy administrator.\nNote the members dynamic group CA_DG are resource principles and hence require the privileges granted by the policies in the compartment independent of the IAM status of the user principal.\nNote the dynamic group exists independent to the compartment, different policies for the members of this group can apply in different compartments. The diagram below summarizes where we are at. Create a backend cert We use the Certificate service to create an internal cert that is it will be signed by our previously created CA. OCI will ask for a common name here we would typically use a descriptive name, then it will require a dns name typically a domain name to IP, then we would choose TLS Server or Client for type, and our CA. Note our cert exists in the compartment.\nSummary As an administrator user we have the required IAM permissions to create the security artifacts in the diagram below to the left, good practice would require we create an IAM user and groups then attach the needed permissions to the compartment as outlined in the docs. However to get the parts to work together we needed to use the dynamic group with policies attached to the compartment. ",
+  "wordCount" : "638",
+  "inLanguage": "en",
+  "datePublished": "2022-09-02T23:48:30+03:00",
+  "dateModified": "2022-09-02T23:48:30+03:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://At-Num.github.io/posts/oci-cert-auth/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Atnum",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://At-Num.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://At-Num.github.io/" accesskey="h" title="Atnum (Alt + H)">Atnum</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://At-Num.github.io/about" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://At-Num.github.io/posts" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://At-Num.github.io/consult" title="Consult">
+                    <span>Consult</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://At-Num.github.io/contact" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      OCI Certificate Authority (CA)
+    </h1>
+    <div class="post-description">
+      Oracle Cloud Infrastructure TLS
+    </div>
+    <div class="post-meta"><span title='2022-09-02 23:48:30 +0300 EEST'>September 2, 2022</span>
+
+</div>
+  </header> 
+  <div class="post-content"><h2 id="tls-everywhere">TLS everywhere<a hidden class="anchor" aria-hidden="true" href="#tls-everywhere">#</a></h2>
+<p>The diagram below shows the set of resources within the compartment manage-tls. We have a Certificate Authority(CA) and a Vault with a RSA signing key attached to the compartment.
+<img loading="lazy" src="/image/ca0.png" alt="compartment view"  />
+</p>
+<p>What follows is an outline of the steps to get everything working in terms of OCI IAM to use the OCI Certificate Authority to generate certificates(certs) for the scaling solution using a public Layer 7 Load Balancer with end to end TLS as shown below.
+<img loading="lazy" src="/image/ca1.png" alt="compartment network"  />
+</p>
+<h2 id="termination-of-tls">Termination of TLS<a hidden class="anchor" aria-hidden="true" href="#termination-of-tls">#</a></h2>
+<p>At the public side of the Load Balancer(LB) we will need a cert that the browser accepts, that is a cert signed by a well known Certificate Authority(CA), that is a CA from the set of well-established CA&rsquo;s that are part of the CA bundling programmes of various OS/browsers, here for example we are using Lets Encrypt(LE). Once the public IP of the LB DNS is set up with the domain everything just works. TLS is terminated and importantantly we stay at layer 7 so that the http packets are available to the LB for filtering via a WAF or routing to the backend set.</p>
+<h2 id="backend-tls">Backend TLS<a hidden class="anchor" aria-hidden="true" href="#backend-tls">#</a></h2>
+<p>To implement TLS in the backend we create an OCI CA with the Vault, we generate a signing key in the Vault and use it to generate a cert with our CA.<br>
+The remainder of this post outlines the IAM permissions required by compartment manage-tls for all the resources to be authorized with the required permissions. In a previous post we discussed the role of <a href="/posts/oci-dynamic-groups/">dynamic groups</a> in this process.</p>
+<h2 id="groups-and-policies">Groups and Policies<a hidden class="anchor" aria-hidden="true" href="#groups-and-policies">#</a></h2>
+<p>When you attempt to create a CA in a compartment if your CA lacks required permissions you will get an error like</p>
+<pre tabindex="0"><code>Authorization failed or requested resource not found: Key Id ocid1.key.oc1..........
+</code></pre><p>This follows as the resource principal, the CA in this case is not authenticated, We will go a bit further to the solution for this as outlined in <a href="/posts/oci-dynamic-groups/">dynamic groups</a>. Previously we set up the dynamic group CertificateAuthority-DG (CA_DG) with a matching rule</p>
+<pre tabindex="0"><code>resource.type=&#39;certificateauthority&#39;
+</code></pre><p>once we establish this group every CA we create will be in this group. We then decide what compartments we will allow authorisation(s) then attach a policy(s) to compartments to allow authorisation(s) for the dynamic group.
+From the <a href="https://docs.oracle.com/en-us/iaas/Content/certificates/managing-certificate-authorities.htm#creating_certificate_authority">docs</a></p>
+<pre tabindex="0"><code>Allow dynamic-group CertificateAuthority-DG to use keys in compartment manage_tls
+Allow dynamic-group CertificateAuthority-DG to manage objects in compartment manage_tls
+</code></pre><p>now CA&rsquo;s in compartment manage_tls will have access to Vault signing keys and storage objects for export. Its best practice is to use IAM users and groups and the docs[1] contain examples for this however for simplicity we are assuming you are the tenancy administrator.</p>
+<p>Note the members dynamic group CA_DG are resource principles and hence require the privileges granted by the policies in the compartment independent of the IAM status of the user principal.</p>
+<p>Note the dynamic group exists independent to the compartment, different policies for the members of this group can apply in different compartments. The diagram below summarizes where we are at.
+<img loading="lazy" src="/image/ca2.png" alt="compartment with IAM"  />
+</p>
+<h2 id="create-a-backend-cert">Create a backend cert<a hidden class="anchor" aria-hidden="true" href="#create-a-backend-cert">#</a></h2>
+<p>We use the Certificate service to create an <a href="https://docs.oracle.com/en-us/iaas/Content/certificates/managing-certificates.htm">internal cert</a> that is it will be signed by our previously created CA. OCI will ask for a common name here we would typically use a descriptive name, then it will require a dns name typically a domain name to IP, then we would choose TLS Server or Client for type, and our CA. Note our cert exists in the compartment.</p>
+<h2 id="summary">Summary<a hidden class="anchor" aria-hidden="true" href="#summary">#</a></h2>
+<p>As an administrator user we have the required IAM permissions to create the security artifacts in the diagram below to the left, good practice would require we create an IAM user and groups then attach the needed permissions to the compartment as outlined in the  <a href="https://docs.oracle.com/en-us/iaas/Content/certificates/managing-certificate-authorities.htm#creating_certificate_authority">docs</a>. However to get the parts to work together we needed to use the dynamic group with policies attached to the compartment.
+<img loading="lazy" src="/image/ca3.png" alt="final compartment with IAM"  />
+</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>Copyright © 2022 AtNum. All Rights Reserved.</span><p style ="width:inherit; font-size:8px;overflow-wrap: break-word;">Company No. SC659362, Registered at Hudson House, 8 Albany Street, Edinburgh, EH1 3QB </p>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>OCI Dynamic Groups vs AWS STS | Atnum</title>
+<meta name="keywords" content="">
+<meta name="description" content="Oracle Cloud Infrastructure IAM">
+<meta name="author" content="">
+<link rel="canonical" href="https://At-Num.github.io/posts/oci-dynamic-groups/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9ec540e21fc29f82d92dfe2d59b0b7ab9375aed0c4f5be8f798043ff08de3f61.css" integrity="sha256-nsVA4h/Cn4LZLf4tWbC3q5N1rtDE9b6PeYBD/wjeP2E=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://At-Num.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://At-Num.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://At-Num.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://At-Num.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://At-Num.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="OCI Dynamic Groups vs AWS STS" />
+<meta property="og:description" content="Oracle Cloud Infrastructure IAM" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://At-Num.github.io/posts/oci-dynamic-groups/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-02T20:19:49&#43;03:00" />
+<meta property="article:modified_time" content="2022-09-02T20:19:49&#43;03:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="OCI Dynamic Groups vs AWS STS"/>
+<meta name="twitter:description" content="Oracle Cloud Infrastructure IAM"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://At-Num.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "OCI Dynamic Groups vs AWS STS",
+      "item": "https://At-Num.github.io/posts/oci-dynamic-groups/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "OCI Dynamic Groups vs AWS STS",
+  "name": "OCI Dynamic Groups vs AWS STS",
+  "description": "Oracle Cloud Infrastructure IAM",
+  "keywords": [
+    
+  ],
+  "articleBody": "If you are coming into OCI from AWS then you are used to using STS credentials with roles to allow resources such as instances or functions to make authenticated requests. An AWS STS token grant, assigns a temporary token via a user or AWS(Service-Linked ) defined role, we can think of this loosely as RBAC.\nAWS RBAC allows both for permissions to be defined in policies and Trust relationships to be defined in separate ’trust’ policies.\nA number of security issues exist when you have privileged tokens getting passed around temporary or not, to mitigate against this, AWS roles uses the defined Trust relationships attached to resources, these ’trust’ policies have a syntax that allows you to have a very fine grained control over the scope of the permissions attached to the token.\nIn the AWS ecosystem it is common to allow third party vendors of logging, security, data integrations, or other services to access your account.\nAWS encourages you to grant access to third parties via the cross-account-assume-role mechanism with the use of an external ID.\nAside from the obvious risk of poorly crafted trust policies, the complexity introduced when you allow cross-account role enumeration can allow privilege escalation.\nAWS has worked hard on this architecture which has many advantages over other cloud vendors that use RBAC with secrets, however it has a critical vulnerability when the external ID declared in the trust policy is weak(guessable).\nIn general as developers we need to work hard to keep things as simple as possible knowing complexity will increase over time, it follows that the more complex a system is then the more vulnerable it becomes. At the IaaS level OCI has a very simple security architecture and has no concept of roles, instead we use dynamic groups to bind permissions to resources in a context called a compartment(a logically related set of resources).\nTo illustrate this, the following is extracted from the oci documentation for the OCI Certificate Management Service. We use this as an example to illustrate how we can use Dynamic groups to allow resources to make authenticated requests analogous to AWS STS RBAC.\nWe have a compartment (manage-tls) where we are using Certificate authority’s (CA’s) to make authenticated calls to oci services, for example a Vault to use a signing key. To allow the CA to be authenticated to use the Vault service, first we create a dynamic group (CA-DG) then attach CA-DG to the compartment. We create the following “matching” rule in CA-DG\nresource.type='certificateauthority' Secondly we create a policy for CA-DG that gives permission to members of CA-DG when accessing a signing key from a vault in the compartment.\nAllow dynamic-group CA-DG to use keys in compartment manage-tls Now any CA in the compartment can access the Vault to obtain a signing key. This is a much simpler security model, more resilient to user error, as the complexity of our infrastructure increases the security will stay simpler and clearer.\nAtnum recommends OCI as a cloud vendor based on what we consider as its simple but highly effective security architecture. OCI dynamic groups allow authenticated resources to access services inside clear delimited boundaries.\nAWS STS RBAC allows many complex scenarios such as cross account RBAC, however with the complexity comes the security responsibility.\n",
+  "wordCount" : "545",
+  "inLanguage": "en",
+  "datePublished": "2022-09-02T20:19:49+03:00",
+  "dateModified": "2022-09-02T20:19:49+03:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://At-Num.github.io/posts/oci-dynamic-groups/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Atnum",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://At-Num.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://At-Num.github.io/" accesskey="h" title="Atnum (Alt + H)">Atnum</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://At-Num.github.io/about" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://At-Num.github.io/posts" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://At-Num.github.io/consult" title="Consult">
+                    <span>Consult</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://At-Num.github.io/contact" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      OCI Dynamic Groups vs AWS STS
+    </h1>
+    <div class="post-description">
+      Oracle Cloud Infrastructure IAM
+    </div>
+    <div class="post-meta"><span title='2022-09-02 20:19:49 +0300 EEST'>September 2, 2022</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>If you are coming into OCI from AWS then you are used to using <a href="https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html">STS</a> credentials with roles to allow resources such as instances or functions to make authenticated requests.
+An AWS STS token grant, assigns a
+<a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html">temporary token</a> via a user or AWS(Service-Linked ) defined role, we can think of this loosely as <a href="https://en.wikipedia.org/wiki/Role-based_access_control">RBAC</a>.</p>
+<p>AWS RBAC allows both for permissions to be defined in policies and Trust relationships to be defined in separate ’trust’ policies.</p>
+<p>A number of security issues exist when you have privileged tokens getting passed around temporary or not, to mitigate against this, AWS roles uses the defined Trust relationships attached to resources, these ’trust’ policies have a syntax that allows you to have a very fine grained control over the scope of the permissions attached to the token.</p>
+<p>In the AWS ecosystem it is common to allow third party vendors of logging, security, data integrations, or other services to access your account.</p>
+<p>AWS encourages you to grant access to third parties via the cross-account-assume-role mechanism with the use of an <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html">external ID</a>.</p>
+<p>Aside from the obvious risk of poorly crafted trust policies, the complexity introduced when you allow
+<a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic-cross-account.html">cross-account role enumeration</a> can allow privilege escalation.</p>
+<p>AWS has worked <a href="https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/">hard</a> on this architecture which has many advantages over other cloud vendors that use RBAC with secrets, however it has a critical <a href="https://en.wikipedia.org/wiki/Confused_deputy_problem">vulnerability</a> when the external ID declared in the trust policy is weak(guessable).</p>
+<p>In general as developers we need to work hard to keep things as simple as possible knowing complexity will increase over time, it follows that the more complex a system is then the more vulnerable it becomes. At the IaaS level OCI has a very simple security architecture and has no concept of roles, instead we use <a href="https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/managingdynamicgroups.htm">dynamic groups</a> to bind permissions to resources in a context called a compartment(a logically related set of resources).</p>
+<p>To illustrate this, the <a href="https://docs.oracle.com/en-us/iaas/Content/certificates/managing-certificate-authorities.htm">following</a> is extracted from the oci documentation for the OCI Certificate Management Service. We use this as an example to illustrate how we can use Dynamic groups to allow resources to make authenticated requests analogous to AWS STS RBAC.</p>
+<p>We have a compartment (manage-tls) where we are using Certificate authority’s (CA&rsquo;s) to make authenticated calls to oci services, for example a Vault to use a signing key. To allow the CA to be authenticated to use the Vault service, first we create a dynamic group (CA-DG) then attach CA-DG to the compartment. We create  the following  “matching” rule in CA-DG</p>
+<pre tabindex="0"><code>resource.type=&#39;certificateauthority&#39;
+</code></pre><p>Secondly we create a policy for CA-DG that gives permission to members of CA-DG when accessing a signing key from a vault in the compartment.</p>
+<pre tabindex="0"><code>Allow dynamic-group CA-DG to use keys in compartment manage-tls
+</code></pre><p>Now any CA in the compartment can access the Vault to obtain a signing key. This is a much simpler security model, more resilient to user error, as the complexity of our infrastructure increases the security will stay simpler and clearer.</p>
+<p>Atnum recommends OCI as a cloud vendor based on what we consider as its simple but highly effective security architecture. OCI dynamic groups allow authenticated resources to access services inside clear delimited boundaries.</p>
+<p>AWS STS RBAC allows many complex scenarios such as cross account RBAC, however with the complexity comes the security responsibility.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>Copyright © 2022 AtNum. All Rights Reserved.</span><p style ="width:inherit; font-size:8px;overflow-wrap: break-word;">Company No. SC659362, Registered at Hudson House, 8 Albany Street, Edinburgh, EH1 3QB </p>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

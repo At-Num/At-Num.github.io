@@ -5,13 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Atnum</title>
+<title>OCI Load Balancer | Atnum</title>
 <meta name="keywords" content="">
-<meta name="description" content="What is Atnum? Atnum is a company that helps the enterprise make secure cloud applications. The core service is video conferencing however Atnum takes a genuinely polyglot approach to creating and maintaining great apps.
-If you want to know more about the technical details, then please contact us. If you want to know more about Atnum&rsquo;s architectural philosophy - then keep reading.
-Security before all things Our threat model assumes that the device has been compromised.">
+<meta name="description" content="Oracle Cloud Infrastructure TLS">
 <meta name="author" content="">
-<link rel="canonical" href="https://At-Num.github.io/about/">
+<link rel="canonical" href="https://At-Num.github.io/posts/oci-loadbalancer/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.9ec540e21fc29f82d92dfe2d59b0b7ab9375aed0c4f5be8f798043ff08de3f61.css" integrity="sha256-nsVA4h/Cn4LZLf4tWbC3q5N1rtDE9b6PeYBD/wjeP2E=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -58,20 +56,16 @@ Security before all things Our threat model assumes that the device has been com
         }
 
     </style>
-</noscript><meta property="og:title" content="" />
-<meta property="og:description" content="What is Atnum? Atnum is a company that helps the enterprise make secure cloud applications. The core service is video conferencing however Atnum takes a genuinely polyglot approach to creating and maintaining great apps.
-If you want to know more about the technical details, then please contact us. If you want to know more about Atnum&rsquo;s architectural philosophy - then keep reading.
-Security before all things Our threat model assumes that the device has been compromised." />
+</noscript><meta property="og:title" content="OCI Load Balancer" />
+<meta property="og:description" content="Oracle Cloud Infrastructure TLS" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://At-Num.github.io/about/" /><meta property="article:section" content="" />
-
-
+<meta property="og:url" content="https://At-Num.github.io/posts/oci-loadbalancer/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-02T23:53:00&#43;03:00" />
+<meta property="article:modified_time" content="2022-09-02T23:53:00&#43;03:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="What is Atnum? Atnum is a company that helps the enterprise make secure cloud applications. The core service is video conferencing however Atnum takes a genuinely polyglot approach to creating and maintaining great apps.
-If you want to know more about the technical details, then please contact us. If you want to know more about Atnum&rsquo;s architectural philosophy - then keep reading.
-Security before all things Our threat model assumes that the device has been compromised."/>
+<meta name="twitter:title" content="OCI Load Balancer"/>
+<meta name="twitter:description" content="Oracle Cloud Infrastructure TLS"/>
 
 
 <script type="application/ld+json">
@@ -82,8 +76,14 @@ Security before all things Our threat model assumes that the device has been com
     {
       "@type": "ListItem",
       "position":  1 ,
-      "name": "",
-      "item": "https://At-Num.github.io/about/"
+      "name": "Posts",
+      "item": "https://At-Num.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "OCI Load Balancer",
+      "item": "https://At-Num.github.io/posts/oci-loadbalancer/"
     }
   ]
 }
@@ -92,20 +92,20 @@ Security before all things Our threat model assumes that the device has been com
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "",
-  "name": "",
-  "description": "What is Atnum? Atnum is a company that helps the enterprise make secure cloud applications. The core service is video conferencing however Atnum takes a genuinely polyglot approach to creating and maintaining great apps.\nIf you want to know more about the technical details, then please contact us. If you want to know more about Atnum\u0026rsquo;s architectural philosophy - then keep reading.\nSecurity before all things Our threat model assumes that the device has been compromised.",
+  "headline": "OCI Load Balancer",
+  "name": "OCI Load Balancer",
+  "description": "Oracle Cloud Infrastructure TLS",
   "keywords": [
     
   ],
-  "articleBody": "What is Atnum? Atnum is a company that helps the enterprise make secure cloud applications. The core service is video conferencing however Atnum takes a genuinely polyglot approach to creating and maintaining great apps.\nIf you want to know more about the technical details, then please contact us. If you want to know more about Atnum’s architectural philosophy - then keep reading.\nSecurity before all things Our threat model assumes that the device has been compromised. App development in this situation is problematic, how can the software be trusted?\nLeverage available cloud security infratructure\nWe recomend Oracle cloud for its simple but effective security architecture Leverage the existing security community resources Slowing down attackers by making static attacks crushingly difficult and isolating systems from one another These and other techniques form a secure baseline that empowers you and your users.\nBuilding with Atnum, employing security as a guiding force, you gain every opportunity to take a proactive security posture.\nPolyglot application development Contemporary application development based on a single language paradigm can become trapped in a bubble of knowledge and idiom. This can work well for certain niche applications, but it also fosters a kind of tribalism.\nThis can be seen in the javascript flame wars, hardliners take their stances and refuse to collaborate across communities.\nAt Atnum we don think so much in terms of languages, rather in terms of engineering concepts, type systems , dynamics, we favour the basics, maps, lists and working with the compiler to produce optimised code for runtime.\nSimple code is easier to deploy and secure.\nServices meetushere Consulting for Enterprise cloud solutions ",
-  "wordCount" : "269",
+  "articleBody": "The diagram below shows possibly the simplest setup for what is termed by OCI as ‘point to point’ TLS. OCI is extensive for Load Balancers(LB) however at least as it applies to TLS it can lead to some confusion. For example SSL itself is depreciated and the system defaults to TLS version 1.2, but this is just pedantic quibiling. The description of the architectures for implementing TLS (see oci docs for concepts ) could be upgraded, here they describe 3 types of TLS configurations TERMINATION, POINT-TO-POINT and TUNNELING.\nTERMINATION is what you would use unless forced by compliance or your backend set instances require TLS to function. TUNNELING is at network layer 4 and to be avoided, if you want tunneling better to use an actual Layer 4 load balancer POINT-TO-POINT is what we will discuss here and most devs would use the term end to end as in this very helpful a-team blog Point to point tls for the above diagram we are\nterminating the LB at the front of the LB with a Lets Encrypt(LE) CA bundle. configuring a point to point TLS connection managed by OCI Certificates(service) and produced with a vault signing key and a OCI user created CA, we outlined this in a previous post creating a TLS connection between the LB and the backend set instances using self signed certs with nginx Configuration Listener for a public LB, typically LB Managed with a CA bundle from the CA bundling programmes of various OS/browsers, port 443 with https and not verifying peer certificate. Back end set load balancer config, typically Certificate Service managed CA bundle, port 443 with https and not verifying peer certificate. instances in the BE set need to be configured for TLS with correct TLS version and compatible ciphers Troubleshooting health check on port 443 generally don’t check peer certificate only TLS v1.2 supported by OCI need compatible cipher [suite](https://docs.oracle.com/en-us/iaas/Content/Balance/Tasks/managingciphersuites_topic-Predefined_Cipher_Suites.htm#predefined ciphersuites) on instances default routes for http request “/” so server block for nginx is default server for example tcpdump wont work with encrypted packets Notes https TLS version \u003c 1.3 (OCI only 1.2 currently) https TLS version \u003c 1.3 puts a significant load on everything so TLS termination prefered prefer termination or point to point to stay at level 7, at layer 4 (TUNNELING) routing policies, sets and rule sets, filtering(WAF) are all unavailable ",
+  "wordCount" : "393",
   "inLanguage": "en",
-  "datePublished": "0001-01-01T00:00:00Z",
-  "dateModified": "0001-01-01T00:00:00Z",
+  "datePublished": "2022-09-02T23:53:00+03:00",
+  "dateModified": "2022-09-02T23:53:00+03:00",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://At-Num.github.io/about/"
+    "@id": "https://At-Num.github.io/posts/oci-loadbalancer/"
   },
   "publisher": {
     "@type": "Organization",
@@ -161,7 +161,7 @@ Security before all things Our threat model assumes that the device has been com
         <ul id="menu">
             <li>
                 <a href="https://At-Num.github.io/about" title="About">
-                    <span class="active">About</span>
+                    <span>About</span>
                 </a>
             </li>
             <li>
@@ -188,34 +188,54 @@ Security before all things Our threat model assumes that the device has been com
   <header class="post-header">
     
     <h1 class="post-title">
-      
+      OCI Load Balancer
     </h1>
-    <div class="post-meta">
+    <div class="post-description">
+      Oracle Cloud Infrastructure TLS
+    </div>
+    <div class="post-meta"><span title='2022-09-02 23:53:00 +0300 EEST'>September 2, 2022</span>
 
 </div>
   </header> 
-  <div class="post-content"><h1 id="what-is-atnum">What is Atnum?<a hidden class="anchor" aria-hidden="true" href="#what-is-atnum">#</a></h1>
-<p>Atnum is a company that helps the enterprise make secure cloud applications. The core service is video conferencing however Atnum takes a genuinely polyglot approach to creating and maintaining great apps.</p>
-<p>If you want to know more about the technical details, then please contact us. If you want to know more about Atnum&rsquo;s architectural philosophy - then keep reading.</p>
-<h3 id="security-before-all-things">Security before all things<a hidden class="anchor" aria-hidden="true" href="#security-before-all-things">#</a></h3>
-<p>Our threat model assumes that the device has been compromised. App development in this situation is problematic, how can the software be trusted?</p>
+  <div class="post-content"><p>The diagram below shows possibly the simplest setup for what is termed by OCI as &lsquo;point to point&rsquo; TLS.
+<img loading="lazy" src="/image/ca1.png" alt="compartment network"  />
+</p>
+<p>OCI is extensive for Load Balancers(LB) however at least as it applies to TLS it can lead to some confusion. For example SSL itself is depreciated and the system defaults to TLS version 1.2, but this is just pedantic quibiling.
+The description of the architectures for implementing TLS (see oci docs for <a href="https://docs.oracle.com/en-us/iaas/Content/Balance/Concepts/balanceoverview_topic-Load_Balancing_Concepts.htm">concepts</a> ) could be upgraded, here they describe 3 types of TLS configurations TERMINATION, POINT-TO-POINT and TUNNELING.</p>
 <ul>
-<li>Leverage available cloud security infratructure<br>
-We recomend Oracle cloud for its simple but effective security architecture</li>
-<li>Leverage the existing security community resources</li>
-<li>Slowing down attackers by making static attacks crushingly difficult and isolating systems from one another</li>
+<li>TERMINATION is what you would use unless forced by compliance or your backend set instances require TLS to function.</li>
+<li>TUNNELING is at network layer 4 and to be avoided, if you want tunneling better to use an actual Layer 4 load balancer</li>
+<li>POINT-TO-POINT is what we will discuss here and most devs would use the term <code>end to end</code> as in this very helpful <a href="https://www.ateam-oracle.com/post/load-balancing-ssl-traffic-in-oci">a-team blog</a></li>
 </ul>
-<p>These and other techniques form a secure baseline that empowers you and your users.</p>
-<p>Building with Atnum, employing security as a guiding force, you gain every opportunity to take a proactive security posture.</p>
-<h3 id="polyglot-application-development">Polyglot application development<a hidden class="anchor" aria-hidden="true" href="#polyglot-application-development">#</a></h3>
-<p>Contemporary application development based on  a single language paradigm can become trapped in a bubble of knowledge and idiom. This can work well for certain niche applications, but it also fosters a kind of tribalism.</p>
-<p>This can be seen in the  javascript flame wars, hardliners take their stances and refuse to collaborate across communities.</p>
-<p>At Atnum we don think so much in terms of languages, rather in terms of engineering concepts,  type systems , dynamics, we favour the basics, maps, lists and working with the compiler to produce optimised code for runtime.</p>
-<p>Simple code is easier to deploy and secure.</p>
-<h1 id="services">Services<a hidden class="anchor" aria-hidden="true" href="#services">#</a></h1>
+<h4 id="point-to-point-tls">Point to point tls<a hidden class="anchor" aria-hidden="true" href="#point-to-point-tls">#</a></h4>
+<p><img loading="lazy" src="/image/ca4.png" alt="compartment network"  />
+</p>
+<p>for the above diagram we are</p>
 <ul>
-<li><a href="https://meetushere.com">meetushere</a></li>
-<li>Consulting for Enterprise cloud solutions</li>
+<li>terminating the LB at the <code>front</code> of the LB with a Lets Encrypt(LE) CA bundle.</li>
+<li>configuring a point to point TLS connection managed by OCI Certificates(service) and produced with a vault signing key and a OCI user created CA, we outlined this in a previous <a href="/posts/oci-cert-auth/">post</a></li>
+<li>creating a TLS connection between the LB and the backend set instances using  self signed certs with nginx</li>
+</ul>
+<h2 id="configuration">Configuration<a hidden class="anchor" aria-hidden="true" href="#configuration">#</a></h2>
+<ul>
+<li>Listener for a public LB, typically LB Managed with a CA bundle from the CA bundling programmes of various OS/browsers, port 443 with https and not verifying peer certificate.</li>
+<li>Back end set load balancer config, typically Certificate Service managed CA bundle, port 443 with https and not verifying peer certificate.</li>
+<li>instances in the BE set need to be configured for TLS with correct TLS version and compatible ciphers</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting<a hidden class="anchor" aria-hidden="true" href="#troubleshooting">#</a></h2>
+<ul>
+<li>health check on port 443</li>
+<li>generally don&rsquo;t check peer certificate</li>
+<li>only TLS v1.2 supported by OCI</li>
+<li>need compatible cipher [suite](<a href="https://docs.oracle.com/en-us/iaas/Content/Balance/Tasks/managingciphersuites_topic-Predefined_Cipher_Suites.htm#predefined">https://docs.oracle.com/en-us/iaas/Content/Balance/Tasks/managingciphersuites_topic-Predefined_Cipher_Suites.htm#predefined</a> ciphersuites) on instances</li>
+<li>default routes for http request &ldquo;/&rdquo; so server block for nginx is default server for example</li>
+<li>tcpdump wont work with encrypted packets</li>
+</ul>
+<h2 id="notes">Notes<a hidden class="anchor" aria-hidden="true" href="#notes">#</a></h2>
+<ul>
+<li>https TLS version &lt; 1.3 (OCI  only 1.2 currently)</li>
+<li>https TLS version &lt; 1.3 puts a significant load on everything so TLS termination prefered</li>
+<li>prefer termination or point to point to stay at level 7, at layer 4 (TUNNELING) routing policies, sets and rule sets, filtering(WAF) are all unavailable</li>
 </ul>
 
 
