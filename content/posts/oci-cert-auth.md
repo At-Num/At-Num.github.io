@@ -45,9 +45,9 @@ Note the members dynamic group CA_DG are resource principles and hence require t
 Note the dynamic group exists independent to the compartment, different policies for the members of this group can apply in different compartments. The diagram below summarizes where we are at.
 ![compartment with IAM](/image/ca2.png)
  
-Create a backend cert
+Create a backend certificate
 --
-We use the Certificate service to create an [internal cert](https://docs.oracle.com/en-us/iaas/Content/certificates/managing-certificates.htm) that is it will be signed by our previously created CA. OCI will ask for a common name here were we would typically use a descriptive name, then it will require a dns name typically a domain name to IP, then we would choose TLS Server or Client for type, and our CA. Note our cert exists in the compartment.
+We use the Certificate service to create an [internal certificate](https://docs.oracle.com/en-us/iaas/Content/certificates/managing-certificates.htm), that is it will be signed by our previously created CA. OCI will ask for a common name here,  we would typically use a descriptive name, then it will require a dns name typically a domain name or IP, then we would choose `TLS Server or Client` for type, and our CA. Note our certificate exists in the compartment `manage-tls`.
  
 Summary
 --
