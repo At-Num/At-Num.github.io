@@ -60,7 +60,7 @@ AllowedIPs = 10.0.2.0/24
 Endpoint = YIP:51820
 ```
 #### Explanation
-PostUp and PostDown are FW rules appended and deleted when we create or destory the VNI wg0  
+PostUp and PostDown are FW rules appended and deleted when we create or destroy the VNI wg0  
 We can see the Endpoint socket for the peer Y.  
 The PrivateKey on X is used for packet decryption for incoming data encrypted with X's public key shared with Y, The PublicKey of Y is shared with X and becomes part of the connection configuration for X. X will encrypt data going out with the public key of Y then Y decrypts that data with its private key. 
 

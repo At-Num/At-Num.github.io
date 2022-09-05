@@ -33,11 +33,13 @@ We have a compartment (manage-tls) where we are using Certificate authority’s 
 ```
 resource.type='certificateauthority'
 ```
-Secondly we create a policy for CA-DG that gives permission to members of CA-DG when accessing a signing key from a vault in the compartment.
+Secondly we create a policy in the compartment, for CA-DG that gives permission to members of CA-DG when accessing a signing key from a vault in the compartment.
 ```
 Allow dynamic-group CA-DG to use keys in compartment manage-tls
 ``` 
 Now any CA in the compartment can access the Vault to obtain a signing key. This is a much simpler security model, more resilient to user error, as the complexity of our infrastructure increases the security will stay simpler and clearer.
+
+Note: while the policy that grants permission is attached( to the compartment, the dynamic group is independent of any compartment, it has tennacy scope.
 
 Atnum recommends OCI as a cloud vendor based on what we consider as its simple but highly effective security architecture. OCI dynamic groups allow authenticated resources to access services inside clear delimited boundaries.
 
