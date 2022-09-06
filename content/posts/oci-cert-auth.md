@@ -19,7 +19,8 @@ At the front(public) side of the Load Balancer(LB) we will need a cert that the 
  
 Backend TLS
 --
-To implement TLS in the backend we create an OCI CA with the Vault, we generate a signing key in the Vault and use it to generate a cert with our CA.  
+To implement TLS in the backend we first create a signing key in the Vault, then create an OCI CA using the signing key from the Vault, following on we use the signing key to generate a cert with our CA.  
+
 The remainder of this post outlines the IAM permissions required by compartment `manage-tls` for all the resource principals to be authorized with the required permissions. In a previous post we discussed the role of [dynamic groups](/posts/oci-dynamic-groups/) in this process.
  
 Groups and Policies

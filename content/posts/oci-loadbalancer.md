@@ -29,7 +29,7 @@ Configuration
 Going Further
 --
 An astute reader at this point should be asking the following question, `why would we need the OCI CA bundle on the backend?` The TLS between the LB backend and the Nginx server is entirley handled by the Nginx certs and private key, we are not implementinmg mTLS so for the setup above the OCI CA bundle appears unused.
-OCI presents ther LB to us as an opaque black box, we have the ability to configure its parts(Listener, WAF, HC, BE Set ect...) but there is no information about the internal architecture of the LB. What follows is entirely hypothetical, 
+OCI presents their LB to us as an opaque black box, we have the ability to configure its parts(Listener, WAF, HC, BE Set ect...) but there is no information about the internal architecture of the LB. What follows is entirely hypothetical, 
 consider the following,
 - TLS < V1.3 puts a load on the system above http, at scale it makes sense to take steps to mitigate this
 - it is hoped OCI is using strategies to offload specific computational tasks to optimized hardware
