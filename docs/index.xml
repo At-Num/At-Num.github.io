@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Atnum</title>
+    <title>AtNum</title>
     <link>https://At-Num.github.io/</link>
     <description>Recent content on AtNum</description>
     <generator>Hugo -- gohugo.io</generator>
@@ -61,8 +61,8 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>info@atnum.uk (AtNum)</author>
       <guid>https://At-Num.github.io/about/</guid>
-      <description>What is AtNum? AtNum is a company that helps the enterprise make secure cloud applications. The core service is video conferencing however Atnum takes a genuinely polyglot approach to creating and maintaining great apps.
-If you want to know more about the technical details, then please contact us. If you want to know more about Atnum&amp;rsquo;s architectural philosophy - then keep reading.
+      <description>What is AtNum? AtNum is a company that helps the enterprise make secure cloud applications. The core service is video conferencing however AtNum takes a genuinely polyglot approach to creating and maintaining great apps.
+If you want to know more about the technical details, then please contact us. If you want to know more about AtNum&amp;rsquo;s architectural philosophy - then keep reading.
 Security before all things Our threat model assumes that the device has been compromised.</description>
     </item>
     
@@ -70,7 +70,7 @@ Security before all things Our threat model assumes that the device has been com
       <title></title>
       <link>https://At-Num.github.io/consult/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>info@atnum.uk (Atnum)</author>
+      <author>info@atnum.uk (AtNum)</author>
       <guid>https://At-Num.github.io/consult/</guid>
       <description>Consult Cloud Solutions Certified Oracle Architect and Application Developer 10+ years experience with AWS, GCP Cloud infrastructure specialists Cloud native specialists Application Development Golang, Kotlin, Javascript prefered System development on linux and windows Postgres and Oracle database </description>
     </item>
@@ -79,7 +79,7 @@ Security before all things Our threat model assumes that the device has been com
       <title></title>
       <link>https://At-Num.github.io/contact/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>info@atnum.uk (Atnum)</author>
+      <author>info@atnum.uk (AtNum)</author>
       <guid>https://At-Num.github.io/contact/</guid>
       <description>Contact Us nigel.savage@atnum.uk Company Information
 Company No. SC659362, Registered at Hudson House, 8 Albany Street, Edinburgh, EH1 3QB </description>
