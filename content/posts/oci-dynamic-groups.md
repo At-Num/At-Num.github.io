@@ -39,9 +39,9 @@ Allow dynamic-group CA-DG to use keys in compartment manage-tls
 ``` 
 Now any CA in the compartment can access the Vault to obtain a signing key. This is a much simpler security model, more resilient to user error, as the complexity of our infrastructure increases the security will stay simpler and clearer.
 
-Note: while the policy that grants permission is attached( to the compartment, the dynamic group is independent of any compartment, it has tennacy scope.
+Note: while the policy that grants permission is attached to the compartment, the dynamic group is independent of any compartment, it has tennacy scope.
 
-Atnum recommends OCI as a cloud vendor based on what we consider as its simple but highly effective security architecture. OCI dynamic groups allow authenticated resources to access services inside clear delimited boundaries.
+AtNum recommends OCI as a cloud vendor based on what we consider as its simple but highly effective security architecture. OCI dynamic groups allow authenticated resources to access services inside clear delimited boundaries.
 
 AWS STS RBAC allows many complex scenarios such as cross account RBAC, however with the complexity comes the security responsibility.
 

@@ -86,7 +86,7 @@ A good question here is why do we not have the PostUp and PostDown are FW rules?
 
 firewall
 =
-In the atnum blog post "Ubuntu on oci" we go through the FW issues, for this config the VN interfaces (wgo) will not be able to connect to the VN on the server (X) as it will be blocked by the default FW rules. We need to open the wireguard UDP port 51280.
+In the AtNum blog post "Ubuntu on oci" we go through the FW issues, for this config the VN interfaces (wgo) will not be able to connect to the VN on the server (X) as it will be blocked by the default FW rules. We need to open the wireguard UDP port 51280.
 ```
 sudo iptables -I  INPUT 8  -p udp -m udp --dport 51820 -m state --state NEW -j ACCEPT
 ```  

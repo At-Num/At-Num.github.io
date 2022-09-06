@@ -1,12 +1,12 @@
 # baseURL is context root for asset links
 baseURL: https://At-Num.github.io/
 languageCode: en-us 
-title: Atnum 
+title: AtNum 
 theme: PaperMod 
 publishDir: docs
 author: 
   email: "info@atnum.uk" 
-  name: "Atnum" 
+  name: "AtNum" 
   location: Hudson House, 8 Albany Street, Edinburgh, EH1 3QB
 
 menu:
@@ -32,7 +32,7 @@ params:
   footer:
   - title: About
     content: >
-      Atnum consulting services. Support for a broad range of services with a focus
+      AtNum consulting services. Support for a broad range of services with a focus
       on secure Oracle cloud applications.
     recents: blog
     recentCount: 1

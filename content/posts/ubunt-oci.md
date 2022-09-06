@@ -54,7 +54,7 @@ REJECT  udp  --  *   *   0.0.0.0/0  169.254.0.0/16   udp  reject-with icmp-port-
 ### Issues
 - ufw is problematic 
 - firewalld works
-- atnum recomends manually setting INPUT rules 
+- AtNum recomends manually setting INPUT rules 
 
 ubuntu on oci will not work well with ufw, in fact oci have disabled it by default. Firewalld will work however it will delete the **InstanceServices** chain.  
 
