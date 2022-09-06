@@ -18,7 +18,8 @@ The description of the architectures for implementing TLS (see oci docs for [con
 for the above diagram we are
 - terminating the LB at the `front` of the LB with a Lets Encrypt(LE) CA bundle.
 - configuring a point to point TLS connection with a CA bundle managed by OCI Certificates(service), where the CA bundle is produced with a vault signing key and a OCI user created CA, we outlined this in a previous [post](/posts/oci-cert-auth/)
-- creating a TLS connection between the LB and the backend set instances using self signed certificates with nginx
+- creating a TLS connection between the LB and the backend set instances using self signed certificates with nginx  
+
 Configuration
 --
 - The Listener: typically LB Managed with a CA bundle from the CA bundling programmes of various OS/browsers, port 443 with https and not verifying peer certificate.
@@ -46,7 +47,8 @@ Troubleshooting
 - only TLS v1.2 supported by OCI
 - need compatible cipher [suite](https://docs.oracle.com/en-us/iaas/Content/Balance/Tasks/managingciphersuites_topic-Predefined_Cipher_Suites.htm#predefined) on instances
 - default routes for http request "/" so the server block for nginx is the default server for example
-- tcpdump wont work with encrypted packets
+- tcpdump wont work with encrypted packets  
+
 Notes
 --
 - https TLS version < 1.3 (OCI  only 1.2 currently)

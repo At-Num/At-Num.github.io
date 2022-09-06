@@ -214,15 +214,10 @@ for the above diagram we are</p>
 <ul>
 <li>terminating the LB at the <code>front</code> of the LB with a Lets Encrypt(LE) CA bundle.</li>
 <li>configuring a point to point TLS connection with a CA bundle managed by OCI Certificates(service), where the CA bundle is produced with a vault signing key and a OCI user created CA, we outlined this in a previous <a href="/posts/oci-cert-auth/">post</a></li>
-<li>creating a TLS connection between the LB and the backend set instances using self signed certificates with nginx
-<table>
-<thead>
-<tr>
-<th>Configuration</th>
-</tr>
-</thead>
-</table>
-</li>
+<li>creating a TLS connection between the LB and the backend set instances using self signed certificates with nginx</li>
+</ul>
+<h2 id="configuration">Configuration<a hidden class="anchor" aria-hidden="true" href="#configuration">#</a></h2>
+<ul>
 <li>The Listener: typically LB Managed with a CA bundle from the CA bundling programmes of various OS/browsers, port 443 with https and not verifying peer certificate.</li>
 <li>Back end set:  typically Certificate Service managed CA bundle, port 443 with https and not verifying peer certificate.</li>
 <li>instances:  need to be configured for TLS with correct TLS version and compatible ciphers</li>
@@ -244,15 +239,10 @@ consider the following,</p>
 <li>only TLS v1.2 supported by OCI</li>
 <li>need compatible cipher <a href="https://docs.oracle.com/en-us/iaas/Content/Balance/Tasks/managingciphersuites_topic-Predefined_Cipher_Suites.htm#predefined">suite</a> on instances</li>
 <li>default routes for http request &ldquo;/&rdquo; so the server block for nginx is the default server for example</li>
-<li>tcpdump wont work with encrypted packets
-<table>
-<thead>
-<tr>
-<th>Notes</th>
-</tr>
-</thead>
-</table>
-</li>
+<li>tcpdump wont work with encrypted packets</li>
+</ul>
+<h2 id="notes">Notes<a hidden class="anchor" aria-hidden="true" href="#notes">#</a></h2>
+<ul>
 <li>https TLS version &lt; 1.3 (OCI  only 1.2 currently)</li>
 <li>https TLS version &lt; 1.3 puts a significant load on everything so TLS termination prefered</li>
 <li>prefer termination or point to point to stay at level 7, at layer 4 (TUNNELING) routing policies, sets and rule sets, filtering(WAF) are all unavailable</li>
