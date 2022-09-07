@@ -5,25 +5,26 @@
 }
 
 .legalTable td {
-    border: 1px solid #ddd;
+    border: 1px solid rgba(211, 244, 246, 0.4);;
     padding: 8px;
 }
 
 
 .legalTable tr th {
-    border: 1px solid #ddd;
+    border: 1px solid rgba(211, 244, 246, 0.4);;
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #d3f9f9;
+    background-color: #080834;
     font-size: 24px;
+    color:white;
 
 }
 
 .legalTable tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: rgba(205, 205, 242, 0.1);
 }
 
 .legalTable tr:hover {
-    background-color: #ddd;
+    background-color: rgba(211, 244, 246, 0.3);
 }
