@@ -29,7 +29,7 @@ In general as developers we need to work hard to keep things as simple as possib
 
 To illustrate this, the [following](https://docs.oracle.com/en-us/iaas/Content/certificates/managing-certificate-authorities.htm) is extracted from the oci documentation for the OCI Certificate Management Service. We use this as an example to illustrate how we can use Dynamic groups to allow resources to make authenticated requests analogous to AWS STS RBAC.
 
-We have a compartment (manage-tls) where we are using Certificate authority’s (CA's) to make authenticated calls to oci services, for example a Vault to use a signing key. To allow the CA to be authenticated to use the Vault service, first we create a dynamic group (CA-DG) then attach CA-DG to the compartment. We create  the following  “matching” rule in CA-DG
+We have a compartment (manage-tls) where we are using Certificate authority’s (CA's) to make authenticated calls to oci services, for example a Vault to use a signing key. To allow the CA to be authenticated to use the Vault service, first we create a dynamic group (CA-DG) then attach policies granting permissions to the members of CA-DG to the compartment. We create  the following  “matching” rule in CA-DG
 ```
 resource.type='certificateauthority'
 ```

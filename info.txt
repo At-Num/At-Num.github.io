@@ -8,6 +8,14 @@ hugo new posts/ubunt-wireguard-oci.md
 hugo server
 hugo new posts/oci-dynamic-groups.md
 
+hugo new privacy-policy.md
+
+[template](https://www.homechef.com/privacy-policy)
+
+https://finisky.github.io/hugoaddcssjs.en/
+
+https://gohugo.io/about/hugo-and-gdpr/
+
 https://blogs.oracle.com/developers/post/enabling-network-traffic-to-ubuntu-images-in-oracle-cloud-infrastructure
 
 https://docs.oracle.com/en-us/iaas/Content/partner-portal/partner-portal_app-iptables-rules.htm

@@ -27,7 +27,13 @@ menu:
       name: Blog 
       url: /posts 
       weight: 200 
+    - identifier: legal 
+      name: Legal 
+      url: /legal 
+      weight: 200  
 params: 
+  customcss:
+    - "css/extend.css"
   
   footer:
   - title: About
