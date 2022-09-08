@@ -11,7 +11,7 @@ We seek to provide opportunities for our customers to
 - [provide feedback](https://meetushere.com/footpages/sup)
 - [report abuse ](https://meetushere.com/footpages/abu)
 - [request support](https://meetushere.com/footpages/sup)
-- contact support: nigel.savage@atnum.uk
+- contact support: support@atnum.uk
  
 Complaints procedure
 --
