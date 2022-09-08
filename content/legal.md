@@ -7,7 +7,7 @@ draft: false
 {{<table "legalTable">}} 
 |  Privacy     | Support                | Terms          | Refund         | Mission        |
 |--------------|------------------------|----------------|----------------|----------------|
-| [privacy policy ](/privacy-policy) | email: nigel.savage@atnum.uk  |   [terms ](/terms)  |  [policy ](/refunds) |  [statement](/mission)              |
+| [privacy policy ](/privacy-policy) | email: info@atnum.uk  |   [terms ](/terms)  |  [policy ](/refunds) |  [statement](/mission)              |
 |              | [request](https://meetushere.com/footpages/sup)  |                |                |                |
 |              | [customer support](/support)  |                |                |                |
 {{</table>}}
