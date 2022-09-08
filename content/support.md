@@ -7,7 +7,7 @@ draft: false
 Customer Support Policy
 --
  
-We seek to provide opportunities for our customers to
+We seek to provide opportunities for our customers to:
 - [provide feedback](https://meetushere.com/footpages/sup)
 - [report abuse ](https://meetushere.com/footpages/abu)
 - [request support](https://meetushere.com/footpages/sup)
@@ -15,7 +15,7 @@ We seek to provide opportunities for our customers to
  
 Complaints procedure
 --
-We take customer service very seriously, if you’re not happy for any reason with a product or the service you’ve received from us we’d really like the opportunity to help put things right. 
+We take customer service very seriously. If, for any reason, you’re not happy with a product or the service you have received from us, we would really appreciate the opportunity to help makes things right. Talk to us. 
  
 Refunds
 --
@@ -23,4 +23,4 @@ Please refer to our refunds [policy](/refunds)
  
 FAQs
 --
-All the latest information and answers to your [frequently asked questions](https://meetushere.com/faqs).
+All the latest information and answers to your [frequently asked questions](https://meetushere.com/faqs "Meet Us Here FAQs").
