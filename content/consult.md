@@ -11,3 +11,10 @@ Consult
 - Golang, Kotlin, Javascript prefered
 - System development on linux and windows
 - Postgres and Oracle database
+
+### Security Expertise
+- Executive Consultancy
+- Cyber Security Operations
+- Risk Management
+- Compliance Readiness
+- Security Testing & Monitoring
