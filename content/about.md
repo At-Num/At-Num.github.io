@@ -1,6 +1,6 @@
 What is AtNum?
 =
-AtNum is a company that helps the enterprise make secure cloud applications. Our core service is educational video conferencing, however, AtNum takes a genuinely polyglot approach to creating and maintaining great applications.
+AtNum Ltd is a company that helps the enterprise make secure cloud applications. Our core service is educational video conferencing, however, AtNum takes a genuinely polyglot approach to creating and maintaining great applications.
  
 Take a moment to read our mission [statement](/mission).
  
