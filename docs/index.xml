@@ -9,7 +9,7 @@
     <managingEditor>info@atnum.uk (AtNum)</managingEditor>
     <webMaster>info@atnum.uk (AtNum)</webMaster>
     <copyright>Copyright &amp;copy; 2022 AtNum. All Rights Reserved.</copyright>
-    <lastBuildDate>Fri, 02 Sep 2022 23:53:00 +0300</lastBuildDate><atom:link href="https://At-Num.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Sep 2022 18:44:45 +0300</lastBuildDate><atom:link href="https://At-Num.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Support</title>
       <link>https://At-Num.github.io/support/</link>
@@ -24,47 +24,38 @@ FAQs All the latest information and answers to your frequently asked questions.<
     
     <item>
       <title>Mission</title>
-      <link>https://At-Num.github.io/mission/</link>
+      <link>https://At-Num.github.io/policies/mission/</link>
       <pubDate>Wed, 07 Sep 2022 18:44:45 +0300</pubDate>
       <author>info@atnum.uk (AtNum)</author>
-      <guid>https://At-Num.github.io/mission/</guid>
+      <guid>https://At-Num.github.io/policies/mission/</guid>
       <description>Mission Statement In Brief AtNum&amp;rsquo;s mission is to provide Cloud services utilising the latest technology and designs. As we move forward into a resource-constrained world, it is of critical importance that the resources available to humanity are shared equitably to bring the greatest benefit to all.
 Core Mission By creating an affordable, accessible and easy to use platform for educators and facilitators we hope to realise homo faber in the context that the natural world is more than a resource for human exploitation, rather our beautiful natural home to be cared for.</description>
     </item>
     
     <item>
       <title>Refunds</title>
-      <link>https://At-Num.github.io/refunds/</link>
+      <link>https://At-Num.github.io/policies/refunds/</link>
       <pubDate>Wed, 07 Sep 2022 18:22:15 +0300</pubDate>
       <author>info@atnum.uk (AtNum)</author>
-      <guid>https://At-Num.github.io/refunds/</guid>
-      <description>Refunds Policy AtNum is a video conferencing service. Your payments are made to the meeting host. AtNum takes a commision of your payment to the host. Video conferencing as a product will fall under the purview of the Consumer Rights Act as it pertains to digital content. Your rights as a consumer of digital content are enumerated here</description>
+      <guid>https://At-Num.github.io/policies/refunds/</guid>
+      <description>Refunds Policy AtNum&amp;rsquo;s Meet Us Here is a video conferencing service. Your payments are made to the meeting host. AtNum takes a commision of your payment to the host. Video conferencing as a product will fall under the purview of the Consumer Rights Act as it pertains to digital content. Your rights as a consumer of digital content are enumerated here</description>
     </item>
     
     <item>
       <title>Terms</title>
-      <link>https://At-Num.github.io/terms/</link>
+      <link>https://At-Num.github.io/policies/terms/</link>
       <pubDate>Wed, 07 Sep 2022 18:07:11 +0300</pubDate>
       <author>info@atnum.uk (AtNum)</author>
-      <guid>https://At-Num.github.io/terms/</guid>
+      <guid>https://At-Num.github.io/policies/terms/</guid>
       <description>Terms and Conditions of Service Thank you for visiting AtNum’s Terms and Conditions of Service (the “Terms and Conditions”). These Terms and Conditions affect your legal rights; please read them carefully. These Terms and Conditions are an agreement between you and AtNum. Along with our representatives, officers, managers, members, subsidiaries, affiliates, parent companies, employees, and agents (collectively “AtNum” or “we” or “us” or “our”), we maintain the website at meetushere.com. These Terms and Conditions govern your use of the meetushere.</description>
     </item>
     
     <item>
-      <title>Updated at</title>
-      <link>https://At-Num.github.io/legal/</link>
-      <pubDate>Wed, 07 Sep 2022 13:12:01 +0300</pubDate>
-      <author>info@atnum.uk (AtNum)</author>
-      <guid>https://At-Num.github.io/legal/</guid>
-      <description> Privacy Support Terms Refund Mission privacy policy email: info@atnum.uk terms policy statement request customer support </description>
-    </item>
-    
-    <item>
       <title>Privacy Policy</title>
-      <link>https://At-Num.github.io/privacy-policy/</link>
+      <link>https://At-Num.github.io/policies/privacy-policy/</link>
       <pubDate>Tue, 06 Sep 2022 23:25:58 +0300</pubDate>
       <author>info@atnum.uk (AtNum)</author>
-      <guid>https://At-Num.github.io/privacy-policy/</guid>
+      <guid>https://At-Num.github.io/policies/privacy-policy/</guid>
       <description>AtNum Privacy Policy Protecting your privacy. Improving your online experience. Your trust is very important to us. At no time do we sell, aggregate or in any other way seek to gain in any commercial way from any information you provide to us. We do not use cookies. In fact, we pride ourselves on the stateless design of our applications. We are a security and application video conference consultancy firm for cloud enterprise applications.</description>
     </item>
     
@@ -119,7 +110,7 @@ Core Mission By creating an affordable, accessible and easy to use platform for 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>info@atnum.uk (AtNum)</author>
       <guid>https://At-Num.github.io/about/</guid>
-      <description>What is AtNum? AtNum is a company that helps the enterprise make secure cloud applications. Our core service is educational video conferencing, however, AtNum takes a genuinely polyglot approach to creating and maintaining great applications.
+      <description>What is AtNum? AtNum Ltd is a company that helps the enterprise make secure cloud applications. Our core service is educational video conferencing, however, AtNum takes a genuinely polyglot approach to creating and maintaining great applications.
 Take a moment to read our mission statement.
 If you want to know more about the technical details, then please contact us. If you want to know more about AtNum&amp;rsquo;s architectural philosophy, then keep reading.</description>
     </item>
