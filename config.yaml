@@ -28,8 +28,8 @@ menu:
       url: /posts 
       weight: 200 
     - identifier: legal 
-      name: Legal 
-      url: /legal 
+      name: Policies 
+      url: /policies 
       weight: 200  
 params: 
   customcss:
