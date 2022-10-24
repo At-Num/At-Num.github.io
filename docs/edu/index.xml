@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Remote Learning on AtNum</title>
+    <link>https://At-Num.github.io/edu/</link>
+    <description>Recent content in Remote Learning on AtNum</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>info@atnum.uk (AtNum)</managingEditor>
+    <webMaster>info@atnum.uk (AtNum)</webMaster>
+    <copyright>Copyright &amp;copy; 2022 AtNum. All Rights Reserved.</copyright><atom:link href="https://At-Num.github.io/edu/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Motivation</title>
+      <link>https://At-Num.github.io/edu/motivation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>info@atnum.uk (AtNum)</author>
+      <guid>https://At-Num.github.io/edu/motivation/</guid>
+      <description>Any experienced educator will tell you the main challenge we face is student motivation. That same educator will tell you the number one answer to this challenge is student choice.
+We here at AtNum have been developing the software for the MeetUsHere project. This has required thousands of lines of code in more than 5 programming languages, endless testing and deployments.
+How do we maintain personal motivation?, by giving ourselves a chance to work on something different that we enjoy in computer science.</description>
+    </item>
+    
+    <item>
+      <title>Lex&#39;s teaching story</title>
+      <link>https://At-Num.github.io/edu/lex_teaching_background/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>info@atnum.uk (AtNum)</author>
+      <guid>https://At-Num.github.io/edu/lex_teaching_background/</guid>
+      <description>Lex has worked as a Literature / Language teacher in both Brazil and the UK. He has an established role as a security architect mentor both to the wider community through conference appearances and to trainees at his company Sthenos Information Security Ltd.
+Lex is bilingual in English and Portuguese and studied linguistics during his Bachelor of Arts. As a cross cultural educator he is fully aware of the communication barriers for bilingual students.</description>
+    </item>
+    
+    <item>
+      <title>Nigel&#39;s teaching story</title>
+      <link>https://At-Num.github.io/edu/nigels_background/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>info@atnum.uk (AtNum)</author>
+      <guid>https://At-Num.github.io/edu/nigels_background/</guid>
+      <description>Nigel has 15+ years experience working in Tertiary and Higher education. Nigel completed the final year of his Education diploma under Adelaide University&amp;rsquo;s Distinguished Professor of Sociology Jerry Smoliz who was the architect of Australia’s multicultural policy.
+On completion of his Mathematics degree he worked extensively as an engineering tutor with a focus on Computer Science and Electrical engineering. At this time he won a junior lecturing position in a matriculation department teaching mathematics and statistics.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -31,6 +31,10 @@ menu:
       name: Policies 
       url: /policies 
       weight: 200  
+    - identifier: learning 
+      name: Remote learning 
+      url: /edu 
+      weight: 200    
 params: 
   customcss:
     - "css/extend.css"

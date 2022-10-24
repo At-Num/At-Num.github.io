@@ -2,6 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://At-Num.github.io/edu/motivation/</loc>
+  </url><url>
+    <loc>https://At-Num.github.io/edu/lex_teaching_background/</loc>
+  </url><url>
+    <loc>https://At-Num.github.io/edu/nigels_background/</loc>
+  </url><url>
     <loc>https://At-Num.github.io/support/</loc>
     <lastmod>2022-09-07T21:52:59+03:00</lastmod>
   </url><url>
@@ -51,6 +57,8 @@
     <priority>0</priority>
   </url><url>
     <loc>https://At-Num.github.io/categories/</loc>
+  </url><url>
+    <loc>https://At-Num.github.io/edu/</loc>
   </url><url>
     <loc>https://At-Num.github.io/tags/</loc>
   </url>
