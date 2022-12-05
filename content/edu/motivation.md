@@ -2,24 +2,26 @@
 title: Motivation
 weight: 2
 ---
-Any experienced educator will tell you the main challenge we face is student motivation. That same educator will tell you the number one answer to this challenge is student choice. 
+Our motivation at AtNum for the development of Remote Learning Solutions is to add both Simplicity and Security simultaneously with ease of access. 
+Every learning institution will have unique requirements but all will struggle with the above.
+
+Here at AtNum we are actively researching emerging remote learning solutions and technologies. Having worked extensively in secondary and tertiary education as well as software engineering we feel we have the background to speak authentically on this topic.
+
+During our research we came across this tool [Lecture Studio](https://www.lecturestudio.org/) an emerging technology from the German University system particularly the [Technical University of Darmstadt](https://www.etit.tu-darmstadt.de/fachbereich/index.en.jsp).
+
+Lecture Studio is an emerging technology that we are actively researching, indeed we have refactored its core component LecturePresenter to remove many of its low level system dependencies and greatly simplified its functionality to create a much simpler and possibly more secure tool ***AtNum Content Creator***.  
+
+AtNum Content Creator is designed for the less technically minded teacher, it can run on older, resource constrained computers that you would typically find in a [hot desk environment](https://en.wikipedia.org/wiki/Hot_desking) in a secondary school department staff room or in a computer lab. As part of our commitment to remote learning we have made this tool freely available. Please see our post AtNum Content Creator here for more information about this tool. 
+
+We work with another technology [BigBlueButton](https://bigbluebutton.org/), BigBlueButton differs from Lecture studio in the respect that it is primarily focused on video conferencing with a number of additional components useful for education. One issue with BigBlueButton is it is resource heavy and requires a large server to run a typical class of 28 + students. We have researched a number of strategies to mitigate this leveraging [Oracle Cloud](https://www.oracle.com/cloud/).  
+
+We have developed our website [meetushere](https://meetushere.com) to both schedule video conferences to run on BigBlueButton and also the independent functionality to stream pre prepared videos or screencasts directly from Oracle Cloud. AtNum Content Creator is ideal for creating screencasts to stream from  [meetushere](https://meetushere.com).
+
+Bertrand Russell in his work on the philosophy of education ***On Education*** developed a schema for intelligence, as the ability to acquire knowledge, Remote Learning can increase the possibility for the development of intelligence primarily by  creating opportunities through which the students' power of thinking can be developed. 
+
+In my personal teaching methodology I call this enrichment.  
+
+It is important to note that Russell saw intelligence as just one component of character or personality,  Remote Learning should never replace the role of a class teacher but rather extend the teachers resources to impart to the students an education for a good life.
+
  
-We here at AtNum have been developing the software for the [MeetUsHere](https://meetushere.com/) project. This has required thousands of lines of code in more than 5 programming languages, endless testing and deployments. 
- 
-How do we maintain personal motivation?, by giving ourselves a chance to work on something different that we enjoy in computer science. 
- 
-We make a choice to study or participate in something new that we find interesting. 
- 
-Think of this as an enrichment process. We will gain some new skills that we can then possibly apply to our main project(s). 
- 
-More than this, the choice to learn something new is essentially a creative process, the consequence of which is a metaphorical "charging of batteries" that gives us renewed motivation to return to our primary tasks with renewed energy and purpose. 
- 
-As educators the most rewarding experience has been to participate in learning communities(usually schools) in different cultures. We have taught in remote indigenos schools in Darwin and Alice springs, We have taught in inner city London schools. We have taught in schools in South America
- 
-To collaborate with teachers from diverse backgrounds in South America, the EU, Africa, the Caribbean, Asia and beyond that you will encounter in these schools is a privilege of a lifetime.
- 
-However these are our personal experiences, how can we share these types of experiences, that both enrich and provide for creativity.
- 
-This is AtNum's motivation as we seek to build a remote learning community to do just this, to provide choice and diversity in education for everyone.
- 
-Please join us here at [MeetUsHere](https://meetushere.com/)
+Please join us at [MeetUsHere](https://meetushere.com/)

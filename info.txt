@@ -29,3 +29,4 @@ https://github.com/material-components/material-components-web/blob/master/packa
 
 Contents of static are mapped as-is to website’s path. Image in static/image.png will be available as it as at website.com/image.png.
 
+https://objectstorage.uk-london-1.oraclecloud.com/p/rPysR6ycfQpT2RsLywMMvzy33eWI5zKGdRI5rKuiUpur3aDl0P7jkzUszX2S123h/n/lrielfmwjsra/b/atnum-recordings-uat/o/content-creatormaster2_1.mp4
