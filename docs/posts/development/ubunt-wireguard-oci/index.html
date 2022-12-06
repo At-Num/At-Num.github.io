@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Ubuntu Wireguard OCI | AtNum</title>
+<meta name="keywords" content="">
+<meta name="description" content="Oracle Cloud Infrastructure Ubuntu Wireguard">
+<meta name="author" content="">
+<link rel="canonical" href="https://At-Num.github.io/posts/development/ubunt-wireguard-oci/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9ec540e21fc29f82d92dfe2d59b0b7ab9375aed0c4f5be8f798043ff08de3f61.css" integrity="sha256-nsVA4h/Cn4LZLf4tWbC3q5N1rtDE9b6PeYBD/wjeP2E=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://At-Num.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://At-Num.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://At-Num.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://At-Num.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://At-Num.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Ubuntu Wireguard OCI" />
+<meta property="og:description" content="Oracle Cloud Infrastructure Ubuntu Wireguard" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://At-Num.github.io/posts/development/ubunt-wireguard-oci/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-16T00:34:28&#43;03:00" />
+<meta property="article:modified_time" content="2022-08-16T00:34:28&#43;03:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Ubuntu Wireguard OCI"/>
+<meta name="twitter:description" content="Oracle Cloud Infrastructure Ubuntu Wireguard"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://At-Num.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Development",
+      "item": "https://At-Num.github.io/posts/development/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Ubuntu Wireguard OCI",
+      "item": "https://At-Num.github.io/posts/development/ubunt-wireguard-oci/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Ubuntu Wireguard OCI",
+  "name": "Ubuntu Wireguard OCI",
+  "description": "Oracle Cloud Infrastructure Ubuntu Wireguard",
+  "keywords": [
+    
+  ],
+  "articleBody": " wireguard concepts virtual network interface virtual network tunnel configuration firewall concepts For clarity this post is restricted to IP4 address. FW is equivalent to iptable. It is assumed port forwarding /etc/sysctl.conf is enabled for IP4 and port 51820 open when needed.\nAt first it can be useful to think of wireguard both as a virtual network interface VNI and a virtual network (VN). This VN uses the private CIDR blocks, for this discussion we use the 10.X.X.X/24 for a single class A network.\nFor a simple VPN between your box(node) and a remote peer(server) everything is connected to the VN via a VNI we call wgo. The VN is a peer network, hence its nodes can connect / exchange traffic. This is not ideal and a security risk. To mitigate we need to isolate the clients, this is just a single FW rule in the FW FORWARD chain.\niptables -I FORWARD -i wg0 -o wg0 -j REJECT --reject-with icmp-adm-prohibited virtual network interface (wg0) Consider your box(node) is a peer connected to the VN via the wg0 VNI. Consider a VN of just 2 peers, peer X a remote VM and peer Y a local client.\nY has config settings for its Y wg0, and config settings for its connection to the remote X wg0. This is symmetric for X. The configuration files for wgo allows for the setup of the WireGuard encrypted UDP tunnel. This tunnel has the following attributes.\nEndpoint: a physical socket for a remote peer. AllowedIPs: CIDR block(s) to control how wgo will route to the the WireGuard tunnel. Address: virtual IP address of wg0 for the VN. tunneling The Address attribute for wg0 is a virtual ip in the CIDR range of the VN, for the following discussion we will create a VN as shown below\nAddress Y = 10.0.2.3/24, here the Y wg0 virtual ip is 10.0.2.3 and packets routed through the Y wg0 Endpoint will be a source IP 10.0.2.3 to X, symmetrically packets received from the VN with destination 10.0.2.3 will be routed by the Y wg0.\nY has a physical ip (YIP), if we ping X (10.0.2.1) from Y wg0 will generate packets with source 10.0.2.3 and destination 10.0.2.1, wgo then encrypts and wraps them in UDP with source YIP and destination Endpoint IP with the default wireguard port of 51820. X listening on Endpoint unwraps and decrypts them onto their wgo VN source 10.0.2.3 and destination 10.0.2.1.\nSymmetrically X receives the ping response as UDP from Endpoint, then wg0 unwraps and decrypts to ICMP source address of 10.0.2.1 with destination address of 10.0.2.3.\nconfig On ubuntu installing wireguard sudo apt install net-tools wireguard along with initial setup(keys and ports) is well documented. The focus here is on the VN configuration, concepts and principles,\nRemote peer X (server) config file sudo nano /etc/wireguard/wg0.conf [Interface] Address = 10.0.2.1/24 SaveConfig = true PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -t nat -A POSTROUTING -o ens3 -j MASQUERADE PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -t nat -D POSTROUTING -o ens3 -j MASQUERADE ListenPort = 51820 PrivateKey = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX [Peer] PublicKey = YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY AllowedIPs = 10.0.2.0/24 Endpoint = YIP:51820 Explanation PostUp and PostDown are FW rules appended and deleted when we create or destroy the VNI wg0\nWe can see the Endpoint socket for the peer Y.\nThe PrivateKey on X is used for packet decryption for incoming data encrypted with X’s public key shared with Y, The PublicKey of Y is shared with X and becomes part of the connection configuration for X. X will encrypt data going out with the public key of Y then Y decrypts that data with its private key.\nPeer Y config file sudo nano /etc/wireguard/wg0.conf [Interface] PrivateKey = YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY Address = 10.0.2.3/24 [Peer] PublicKey = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXZ Endpoint = XIP:51820 AllowedIPs = 10.0.2.1/24 Explanation As for the configuration for the node X we see the symmetric configuration. The Endpoint socket for X, and VCN ip addresses.\nA good question here is why do we not have the PostUp and PostDown are FW rules? In this example X is inside an oci virtual cloud network VCN. The PostUp/PostDown rules allow an internal socket on X behind wgo for nat routing to the VCN. We dont need this for a desktop linux client.\nfirewall In the AtNum blog post “Ubuntu on oci” we go through the FW issues, for this config the VN interfaces (wgo) will not be able to connect to the VN on the server (X) as it will be blocked by the default FW rules. We need to open the wireguard UDP port 51280.\nsudo iptables -I INPUT 8 -p udp -m udp --dport 51820 -m state --state NEW -j ACCEPT with this input rule the VN 10.0.2.0/24 will be accessible to the virtual network interface wgo, we can test this by pinging the server (X) from the client (Y) via the wireguard udp tunnel.\n$ ping 10.0.2.1 PING 10.0.2.1 (10.0.2.1) 56(84) bytes of data. 64 bytes from 10.0.2.1: icmp_seq=1 ttl=64 time=98.3 ms 64 bytes from 10.0.2.1: icmp_seq=2 ttl=64 time=48.8 ms 64 bytes from 10.0.2.1: icmp_seq=3 ttl=64 time=49.6 ms summary To implement this example with Ubuntu on oci you will need port 51820 open in your NSG or equivalent. You will also need the basic packages to work with iptables, and the wireguard package itself.\nWireguard is a simple to implement solution whenever you need a secure virtual network.\n",
+  "wordCount" : "907",
+  "inLanguage": "en",
+  "datePublished": "2022-08-16T00:34:28+03:00",
+  "dateModified": "2022-08-16T00:34:28+03:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://At-Num.github.io/posts/development/ubunt-wireguard-oci/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "AtNum",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://At-Num.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+    <link rel="stylesheet" href="https://At-Num.github.io/css/extend.css">
+
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://At-Num.github.io/" accesskey="h" title="AtNum (Alt + H)">AtNum</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://At-Num.github.io/edu" title="Remote learning">
+                    <span>Remote learning</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://At-Num.github.io/posts" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://At-Num.github.io/about" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://At-Num.github.io/contact" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://At-Num.github.io/consult" title="Consult">
+                    <span>Consult</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://At-Num.github.io/policies" title="Policies">
+                    <span>Policies</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Ubuntu Wireguard OCI
+    </h1>
+    <div class="post-description">
+      Oracle Cloud Infrastructure Ubuntu Wireguard
+    </div>
+    <div class="post-meta"><span title='2022-08-16 00:34:28 +0300 EEST'>August 16, 2022</span>
+
+</div>
+  </header> 
+  <div class="post-content"><ul>
+<li>wireguard concepts</li>
+<li>virtual network interface</li>
+<li>virtual network tunnel</li>
+<li>configuration</li>
+<li>firewall</li>
+</ul>
+<hr>
+<h1 id="concepts">concepts<a hidden class="anchor" aria-hidden="true" href="#concepts">#</a></h1>
+<p>For clarity this post is restricted to IP4 address. FW is equivalent to iptable. It is assumed port forwarding <code>/etc/sysctl.conf</code> is enabled for IP4 and port 51820 open when needed.</p>
+<p>At first it can be useful to think of wireguard both as a virtual network interface VNI and a virtual network (VN). This VN uses the <a href="https://en.wikipedia.org/wiki/Private_network#Private_IPv4_addresses">private CIDR blocks</a>, for this discussion we use the 10.X.X.X/24 for a single class A network.<br>
+For a simple VPN between your box(node) and a remote peer(server) everything is connected to the VN via a VNI we call <code>wgo</code>. The VN is a peer network, hence its nodes can connect / exchange traffic. This is not ideal and a security risk. To mitigate we need to isolate the clients, this is just a single FW rule in the FW FORWARD chain.</p>
+<pre tabindex="0"><code>iptables -I FORWARD -i wg0 -o wg0 -j REJECT --reject-with icmp-adm-prohibited
+</code></pre><h3 id="virtual-network-interface-wg0">virtual network interface (wg0)<a hidden class="anchor" aria-hidden="true" href="#virtual-network-interface-wg0">#</a></h3>
+<p>Consider your box(node) is a peer connected to the VN via the wg0 VNI. Consider a VN of just 2 peers, peer X a remote VM and peer Y a local client.<br>
+Y has config settings for its Y wg0, and config settings for its connection to the remote X wg0. This is symmetric for X. The configuration files for wgo allows for the setup of the WireGuard encrypted UDP tunnel. This tunnel has the following attributes.</p>
+<ul>
+<li>Endpoint:  a physical socket for a remote peer.</li>
+<li>AllowedIPs: CIDR block(s) to control how wgo will route to the the WireGuard tunnel.</li>
+<li>Address:  virtual IP address of wg0 for the VN.</li>
+</ul>
+<h3 id="tunneling">tunneling<a hidden class="anchor" aria-hidden="true" href="#tunneling">#</a></h3>
+<p>The Address attribute for wg0 is a virtual ip in the CIDR range of the VN, for the following discussion we will create a VN as shown below<br>
+<img loading="lazy" src="/image/wgVN.png" alt="wireguard Virtual Network"  />
+
+Address Y = 10.0.2.3/24, here the Y wg0 virtual ip is 10.0.2.3 and packets routed through the Y wg0 Endpoint will be a source IP 10.0.2.3 to X, symmetrically packets received from the VN with destination 10.0.2.3 will be routed by the Y wg0.</p>
+<p>Y has a physical ip (YIP), if we ping X (10.0.2.1) from Y wg0 will generate packets with source 10.0.2.3 and destination 10.0.2.1, wgo then encrypts and wraps them in UDP with source YIP and destination Endpoint IP with the default wireguard port of 51820. X listening on Endpoint unwraps and decrypts them onto their wgo VN source 10.0.2.3 and destination 10.0.2.1.</p>
+<p>Symmetrically X receives the ping response as UDP from Endpoint, then wg0 unwraps and decrypts to ICMP source address of 10.0.2.1 with destination address of 10.0.2.3.</p>
+<h1 id="config">config<a hidden class="anchor" aria-hidden="true" href="#config">#</a></h1>
+<p>On ubuntu installing wireguard <code>sudo apt install net-tools wireguard</code> along with initial setup(keys and ports) is well documented. The focus here is on the VN configuration, concepts and principles,</p>
+<hr>
+<h3 id="remote-peer-x-server">Remote peer X (server)<a hidden class="anchor" aria-hidden="true" href="#remote-peer-x-server">#</a></h3>
+<h4 id="config-file">config file<a hidden class="anchor" aria-hidden="true" href="#config-file">#</a></h4>
+<pre tabindex="0"><code>sudo nano /etc/wireguard/wg0.conf
+</code></pre><pre tabindex="0"><code>[Interface]
+Address = 10.0.2.1/24
+SaveConfig = true
+PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -t nat -A POSTROUTING -o ens3 -j MASQUERADE
+PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -t nat -D POSTROUTING -o ens3 -j MASQUERADE
+ListenPort = 51820
+PrivateKey = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+[Peer]
+PublicKey = YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+AllowedIPs = 10.0.2.0/24
+Endpoint = YIP:51820
+</code></pre><h4 id="explanation">Explanation<a hidden class="anchor" aria-hidden="true" href="#explanation">#</a></h4>
+<p>PostUp and PostDown are FW rules appended and deleted when we create or destroy the VNI wg0<br>
+We can see the Endpoint socket for the peer Y.<br>
+The PrivateKey on X is used for packet decryption for incoming data encrypted with X&rsquo;s public key shared with Y, The PublicKey of Y is shared with X and becomes part of the connection configuration for X. X will encrypt data going out with the public key of Y then Y decrypts that data with its private key.</p>
+<h3 id="peer-y">Peer Y<a hidden class="anchor" aria-hidden="true" href="#peer-y">#</a></h3>
+<h4 id="config-file-1">config file<a hidden class="anchor" aria-hidden="true" href="#config-file-1">#</a></h4>
+<pre tabindex="0"><code>sudo nano /etc/wireguard/wg0.conf
+</code></pre><pre tabindex="0"><code>[Interface]
+PrivateKey = YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+Address = 10.0.2.3/24
+
+[Peer]
+PublicKey = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXZ
+Endpoint = XIP:51820
+AllowedIPs = 10.0.2.1/24
+</code></pre><h4 id="explanation-1">Explanation<a hidden class="anchor" aria-hidden="true" href="#explanation-1">#</a></h4>
+<p>As for the configuration for the node X we see the symmetric configuration. The Endpoint socket for X, and VCN ip addresses.<br>
+A good question here is why do we not have the PostUp and PostDown are FW rules?  In this example X is inside an oci virtual cloud network VCN. The PostUp/PostDown rules allow an internal socket on X behind wgo for nat routing to the VCN. We dont need this for a desktop linux client.</p>
+<h1 id="firewall">firewall<a hidden class="anchor" aria-hidden="true" href="#firewall">#</a></h1>
+<p>In the AtNum blog post &ldquo;Ubuntu on oci&rdquo; we go through the FW issues, for this config the VN interfaces (wgo) will not be able to connect to the VN on the server (X) as it will be blocked by the default FW rules. We need to open the wireguard UDP port 51280.</p>
+<pre tabindex="0"><code>sudo iptables -I  INPUT 8  -p udp -m udp --dport 51820 -m state --state NEW -j ACCEPT
+</code></pre><p>with this input rule the VN 10.0.2.0/24 will be accessible to the virtual network interface wgo, we can test this by pinging the server (X) from the client (Y) via the wireguard udp tunnel.</p>
+<pre tabindex="0"><code>$ ping 10.0.2.1
+PING 10.0.2.1 (10.0.2.1) 56(84) bytes of data.
+64 bytes from 10.0.2.1: icmp_seq=1 ttl=64 time=98.3 ms
+64 bytes from 10.0.2.1: icmp_seq=2 ttl=64 time=48.8 ms
+64 bytes from 10.0.2.1: icmp_seq=3 ttl=64 time=49.6 ms
+</code></pre><h1 id="summary">summary<a hidden class="anchor" aria-hidden="true" href="#summary">#</a></h1>
+<p>To implement this example with Ubuntu on oci you will need port 51820 open in your NSG or equivalent. You will also need the  basic packages to work with iptables,  and the wireguard package itself.<br>
+Wireguard is a simple to implement solution whenever you need a secure virtual network.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>Copyright © 2022 AtNum. All Rights Reserved.</span><p style ="width:inherit; font-size:8px;overflow-wrap: break-word;">Company No. SC659362, Registered at Hudson House, 8 Albany Street, Edinburgh, EH1 3QB </p>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

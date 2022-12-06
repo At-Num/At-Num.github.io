@@ -9,7 +9,7 @@
     <managingEditor>info@atnum.uk (AtNum)</managingEditor>
     <webMaster>info@atnum.uk (AtNum)</webMaster>
     <copyright>Copyright &amp;copy; 2022 AtNum. All Rights Reserved.</copyright>
-    <lastBuildDate>Wed, 07 Sep 2022 18:44:45 +0300</lastBuildDate><atom:link href="https://At-Num.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Dec 2022 23:48:30 +0300</lastBuildDate><atom:link href="https://At-Num.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Motivation</title>
       <link>https://At-Num.github.io/edu/motivation/</link>
@@ -49,6 +49,24 @@ Lex is bilingual in English and Portuguese and studied linguistics during his Ba
       <guid>https://At-Num.github.io/edu/nigels_background/</guid>
       <description>Nigel has 15+ years experience working in Tertiary and Higher education. Nigel completed the final year of his Education diploma under Adelaide University&amp;rsquo;s Distinguished Professor of Sociology Jerry Smoliz who was the architect of Australia’s multicultural policy.
 On completion of his Mathematics degree he worked extensively as an engineering tutor with a focus on Computer Science and Electrical engineering. At this time he won a junior lecturing position in a matriculation department teaching mathematics and statistics.</description>
+    </item>
+    
+    <item>
+      <title>Meetushere Promotions</title>
+      <link>https://At-Num.github.io/posts/remote/promotions/</link>
+      <pubDate>Sat, 03 Dec 2022 23:48:30 +0300</pubDate>
+      <author>info@atnum.uk (AtNum)</author>
+      <guid>https://At-Num.github.io/posts/remote/promotions/</guid>
+      <description>Meetushere Promo Code</description>
+    </item>
+    
+    <item>
+      <title>Meetushere</title>
+      <link>https://At-Num.github.io/posts/remote/meetushere/</link>
+      <pubDate>Fri, 02 Dec 2022 23:48:30 +0300</pubDate>
+      <author>info@atnum.uk (AtNum)</author>
+      <guid>https://At-Num.github.io/posts/remote/meetushere/</guid>
+      <description>Announcing Meetushere</description>
     </item>
     
     <item>
@@ -103,46 +121,46 @@ Mission Secure Web tools for remote learning -&amp;gt; meetushere Secure In hous
     
     <item>
       <title>OCI Load Balancer</title>
-      <link>https://At-Num.github.io/posts/oci-loadbalancer/</link>
+      <link>https://At-Num.github.io/posts/development/oci-loadbalancer/</link>
       <pubDate>Fri, 02 Sep 2022 23:53:00 +0300</pubDate>
       <author>info@atnum.uk (AtNum)</author>
-      <guid>https://At-Num.github.io/posts/oci-loadbalancer/</guid>
+      <guid>https://At-Num.github.io/posts/development/oci-loadbalancer/</guid>
       <description>Oracle Cloud Infrastructure TLS</description>
     </item>
     
     <item>
       <title>OCI Certificate Authority (CA)</title>
-      <link>https://At-Num.github.io/posts/oci-cert-auth/</link>
+      <link>https://At-Num.github.io/posts/development/oci-cert-auth/</link>
       <pubDate>Fri, 02 Sep 2022 23:48:30 +0300</pubDate>
       <author>info@atnum.uk (AtNum)</author>
-      <guid>https://At-Num.github.io/posts/oci-cert-auth/</guid>
+      <guid>https://At-Num.github.io/posts/development/oci-cert-auth/</guid>
       <description>Oracle Cloud Infrastructure TLS</description>
     </item>
     
     <item>
       <title>OCI Dynamic Groups vs AWS STS</title>
-      <link>https://At-Num.github.io/posts/oci-dynamic-groups/</link>
+      <link>https://At-Num.github.io/posts/development/oci-dynamic-groups/</link>
       <pubDate>Fri, 02 Sep 2022 20:19:49 +0300</pubDate>
       <author>info@atnum.uk (AtNum)</author>
-      <guid>https://At-Num.github.io/posts/oci-dynamic-groups/</guid>
+      <guid>https://At-Num.github.io/posts/development/oci-dynamic-groups/</guid>
       <description>Oracle Cloud Infrastructure IAM</description>
     </item>
     
     <item>
       <title>Ubuntu Wireguard OCI</title>
-      <link>https://At-Num.github.io/posts/ubunt-wireguard-oci/</link>
+      <link>https://At-Num.github.io/posts/development/ubunt-wireguard-oci/</link>
       <pubDate>Tue, 16 Aug 2022 00:34:28 +0300</pubDate>
       <author>info@atnum.uk (AtNum)</author>
-      <guid>https://At-Num.github.io/posts/ubunt-wireguard-oci/</guid>
+      <guid>https://At-Num.github.io/posts/development/ubunt-wireguard-oci/</guid>
       <description>Oracle Cloud Infrastructure Ubuntu Wireguard</description>
     </item>
     
     <item>
       <title>Ubuntu on OCI</title>
-      <link>https://At-Num.github.io/posts/ubunt-oci/</link>
+      <link>https://At-Num.github.io/posts/development/ubunt-oci/</link>
       <pubDate>Tue, 09 Aug 2022 18:08:51 +0300</pubDate>
       <author>info@atnum.uk (AtNum)</author>
-      <guid>https://At-Num.github.io/posts/ubunt-oci/</guid>
+      <guid>https://At-Num.github.io/posts/development/ubunt-oci/</guid>
       <description>Oracle Cloud Infrastructure Ubuntu Image Iptables</description>
     </item>
     
