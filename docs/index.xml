@@ -27,7 +27,8 @@ Here at AtNum we are actively researching emerging remote learning solutions and
       <author>info@atnum.uk (AtNum)</author>
       <guid>https://At-Num.github.io/edu/content-creator/</guid>
       <description>Atnum Content Creator is a simple and easy to set up tool for creating educational screencasts. You can easily stream these screen casts from the cloud, one possibility is to stream your content from meetushere
-Download install zip, currently only Debian/Ubuntu, Windows 10 available asap Content Creator installation files </description>
+Content Creator is free and easy to set up, will run on old computers. The video below
+shows uses cases runs a demo outlines legal compliance with the license (so free to share and use) shows the Remote Learning ecosystem wrt Content Creator introduces Lecture Studio and BigBlueButton introduces meetushere and how to use Content Creator with meetushere introduces AtNum see download and install below to access Content Creator</description>
     </item>
     
     <item>
@@ -63,13 +64,14 @@ FAQs All the latest information and answers to your frequently asked questions.<
     </item>
     
     <item>
-      <title>Mission</title>
+      <title>Mission Statement</title>
       <link>https://At-Num.github.io/policies/mission/</link>
       <pubDate>Wed, 07 Sep 2022 18:44:45 +0300</pubDate>
       <author>info@atnum.uk (AtNum)</author>
       <guid>https://At-Num.github.io/policies/mission/</guid>
-      <description>Mission Statement In Brief AtNum&amp;rsquo;s mission is to provide Cloud services utilising the latest technology and designs. As we move forward into a resource-constrained world, it is of critical importance that the resources available to humanity are shared equitably to bring the greatest benefit to all.
-Core Mission By creating an affordable, accessible and easy to use platform for educators and facilitators we hope to realise homo faber in the context that the natural world is more than a resource for human exploitation, rather our beautiful natural home to be cared for.</description>
+      <description>In Brief AtNum&amp;rsquo;s mission is to provide Cloud based services utilizing the latest technology and designs. We have a focus for secure remote learning.
+By creating platforms and tools for facilitators we hope to realize homo faber.
+Mission Secure Web tools for remote learning -&amp;gt; meetushere Secure In house tools for remote learning -&amp;gt; AtNum Content Creator Consult and train for remote learning and security Consult and develop for secure applications Vision empowering people via the use of tools homo faber.</description>
     </item>
     
     <item>
@@ -150,9 +152,9 @@ Core Mission By creating an affordable, accessible and easy to use platform for 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>info@atnum.uk (AtNum)</author>
       <guid>https://At-Num.github.io/about/</guid>
-      <description>What is AtNum? AtNum Ltd is a company that helps the enterprise make secure cloud applications. Our core service is educational video conferencing, however, AtNum takes a genuinely polyglot approach to creating and maintaining great applications.
+      <description>What is AtNum? AtNum Ltd is a company that helps the enterprise make secure cloud applications with a focus on remote learning via video conferencing and creating tools for educators, however, AtNum takes a genuinely polyglot approach to creating and maintaining secure applications.
 Take a moment to read our mission statement.
-If you want to know more about the technical details, then please contact us. If you want to know more about AtNum&amp;rsquo;s architectural philosophy, then keep reading.</description>
+If you want to know more about the technical details, then please contact us. If you want to know more about AtNum&amp;rsquo;s work, then keep reading.</description>
     </item>
     
     <item>

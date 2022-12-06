@@ -9,7 +9,8 @@ Here at AtNum we are actively researching emerging remote learning solutions and
 
 During our research we came across this tool [Lecture Studio](https://www.lecturestudio.org/) an emerging technology from the German University system particularly the [Technical University of Darmstadt](https://www.etit.tu-darmstadt.de/fachbereich/index.en.jsp).
 
-Lecture Studio is an emerging technology that we are actively researching, indeed we have refactored its core component LecturePresenter to remove many of its low level system dependencies and greatly simplified its functionality to create a much simpler and possibly more secure tool ***AtNum Content Creator***.  
+Lecture Studio is an emerging technology that we are actively researching, indeed we have refactored its core component LecturePresenter to remove many of its low level system dependencies and greatly simplified its functionality to create a much simpler and possibly more secure tool 
+[AtNum Content Creator]({{< ref "/edu/content-creator.md" >}} "Content Creator")
 
 AtNum Content Creator is designed for the less technically minded teacher, it can run on older, resource constrained computers that you would typically find in a [hot desk environment](https://en.wikipedia.org/wiki/Hot_desking) in a secondary school department staff room or in a computer lab. As part of our commitment to remote learning we have made this tool freely available. Please see our post AtNum Content Creator here for more information about this tool. 
 

@@ -1,19 +1,30 @@
 ---
-title: "Mission"
+title: "Mission Statement"
 date: 2022-09-07T18:44:45+03:00
 draft: false
----
-Mission Statement
 ---
  
 In Brief
 ---
-AtNum's mission is to provide Cloud services utilising the latest technology and designs. As we move forward into a resource-constrained world, it is of critical importance that the resources available to humanity are shared equitably to bring the greatest benefit to all.
- 
-Core Mission
+
+AtNum's mission is to provide Cloud based services utilizing the latest technology and designs. We have a focus for secure remote learning.
+
+By creating  platforms and tools for facilitators we hope to realize [` homo faber `](https://en.wikipedia.org/wiki/Homo_faber "Home Faber on Wiki").
+
+
+Mission
 ---
-By creating an affordable, accessible and easy to use platform for educators and facilitators we hope to realise [` homo faber `](https://en.wikipedia.org/wiki/Homo_faber "Home Faber on Wiki") in the context that the natural world is more than a resource for human exploitation, rather our beautiful natural home to be cared for. 
- 
-Ecology
+- Secure Web tools for remote learning -> [meetushere](https://meetushere.com)
+- Secure In house tools for remote learning -> [AtNum Content Creator]({{< ref "/edu/content-creator.md" >}} "Content Creator")
+- Consult and train for remote learning and security
+- Consult and develop for secure applications
+
+Vision
 ---
-AtNum believes it is all our shared duty to care for and preserve the natural world. Our contribution will be through optimising resource utilisation in the cloud to limit power usage. The technical, calculation, and instrumental thinking of our time needs to be supplemented, and indeed contained, by an awareness of values deeper than utility for survival of something greater than we are.
+
+- empowering people via the use of tools ***homo faber***.  
+- facilitate communication and remote learning technological advances
+- help skills and knowledge facilitators like teachers and independent educators
+- create secure tools for remote learning
+- create tools for secure communication
+- create secure tools for everyone
