@@ -2,9 +2,9 @@
 title: AtNum Content Creator
 weight: 4
 ---
-Atnum Content Creator is a simple and easy to set up tool for creating educational screencasts. You can easily stream these screen casts from the cloud, one possibility is to stream your content from [meetushere](https://meetushere.com)  
+***Atnum Content Creator*** is a simple and easy to set up tool for creating educational screencasts. You can easily stream these screencasts from the cloud, one possibility is to stream your content from [meetushere](https://meetushere.com)  
 
-Content Creator is free and easy to set up, will run on old computers. The video below
+Content Creator is free and easy to set up, will run on old computers. The video below will;
 - shows uses cases
 - runs a demo
 - outlines legal compliance with the license (so free to share and use)
@@ -13,10 +13,13 @@ Content Creator is free and easy to set up, will run on old computers. The video
 - introduces [meetushere](https://meetushere.com) and how to use it with Content Creator
 - introduces AtNum
 
-see download and install below to access Content Creator
+***see download and install below to access Content Creator***
 
-### Download install zip, currently support  Debian/Ubuntu, Windows 10
-#### [Content Creator installation files](https://github.com/At-Num/content-creator/releases )  
+Download install the zip for your platform, currently supported platforms  
+ - Debian/Ubuntu
+ - Windows 10  
+ 
+[Content Creator installation files](https://github.com/At-Num/content-creator/releases )  
 
 
 
