@@ -10,7 +10,7 @@ Content Creator is free and easy to set up, will run on old computers. The video
 - outlines legal compliance with the license (so free to share and use)
 - shows the Remote Learning ecosystem wrt Content Creator
 - introduces Lecture Studio and BigBlueButton
-- introduces meetushere and how to use Content Creator with meetushere
+- introduces [meetushere](https://meetushere.com) and how to use it with Content Creator
 - introduces AtNum
 
 see download and install below to access Content Creator

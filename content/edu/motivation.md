@@ -16,7 +16,7 @@ AtNum Content Creator is designed for the less technically minded teacher, it ca
 
 We work with another technology [BigBlueButton](https://bigbluebutton.org/), BigBlueButton differs from Lecture studio in the respect that it is primarily focused on video conferencing with a number of additional components useful for education. One issue with BigBlueButton is it is resource heavy and requires a large server to run a typical class of 28 + students. We have researched a number of strategies to mitigate this leveraging [Oracle Cloud](https://www.oracle.com/cloud/).  
 
-We have developed our website [meetushere](https://meetushere.com) to both schedule video conferences to run on BigBlueButton and also the independent functionality to stream pre prepared videos or screencasts directly from Oracle Cloud. AtNum Content Creator is ideal for creating screencasts to stream from  [meetushere](https://meetushere.com).
+We have developed our website [meetushere](https://meetushere.com) to both schedule video conferences to run on BigBlueButton and also the independent functionality to stream pre prepared videos or screencasts directly from Oracle Cloud. AtNum Content Creator is ideal for creating screencasts to stream from [meetushere](https://meetushere.com).
 
 Bertrand Russell in his work on the philosophy of education ***On Education*** developed a schema for intelligence, as the ability to acquire knowledge, Remote Learning can increase the possibility for the development of intelligence primarily by  creating opportunities through which the students' power of thinking can be developed. 
 
